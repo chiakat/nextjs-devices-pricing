@@ -1,0 +1,21 @@
+{
+  "name": "alwaysai",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "knex": "^0.95.14",
+    "next": "12.0.5",
+    "pg": "^8.7.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "eslint": "8.4.0",
+    "eslint-config-next": "12.0.5"
+  }
+}
