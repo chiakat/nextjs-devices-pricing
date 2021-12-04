@@ -17,6 +17,11 @@ exports.seed = function(knex) {
           id: 3,
           name: 'Project 3 - Team 2',
           team: 2,
+        },
+        {
+          id: 4,
+          name: 'Project 4 - Team 3',
+          team: 3,
         }
       ]);
     });

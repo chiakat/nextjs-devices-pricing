@@ -26,7 +26,7 @@ exports.seed = function(knex) {
         {
           id: 5,
           user: 3,
-          project: 1,
+          project: 3,
         }
       ]);
     });
