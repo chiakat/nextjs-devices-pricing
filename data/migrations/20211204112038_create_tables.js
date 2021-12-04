@@ -1,52 +1,56 @@
 
 exports.up = function(knex) {
-  knex.schema
-    .createTable("user", tbl => {
-      tbl.increments();
-      table.string('email').notNullable();
-      table.string('password').notNullable();
+  return knex.schema
+    .createTable("user", table => {
+      table.increments();
+      table.string("name").notNullable();
+      table.string("email").notNullable();
+      table.string("password").notNullable();
     })
-    .createTable("team", tbl => {
-      tbl.increments();
-      tbl.string("name").notNullable();
-      table.foreign("owner").references("user_id").inTable("user");
+    .createTable("team", table => {
+      table.increments();
+      table.string("name").notNullable();
+      table.integer("owner").references("id").inTable("user");
     })
-    .createTable("team_member", tbl => {
-      tbl.increments();
-      table.foreign("member").references("user_id").inTable("user");
-      table.foreign("team").references("team_id").inTable("team");
+    .createTable("team_member", table => {
+      table.increments();
+      table.integer("member").references("id").inTable("user");
+      table.integer("team").references("id").inTable("team");
     })
-    .createTable("project", tbl => {
-      tbl.increments();
-      table.string('name').notNullable();
-      table.foreign("team").references("team_id").inTable("team");
+    .createTable("project", table => {
+      table.increments();
+      table.string("name").notNullable();
+      table.integer("team").references("id").inTable("team");
     })
-    .createTable("collaborator", tbl => {
-      tbl.increments();
-      table.foreign("user").references("user_id").inTable("user");
-      table.foreign("project").references("project_id").inTable("project");
+    // TO DO: add validation that user is on the team associated with the project
+    .createTable("collaborator", table => {
+      table.increments();
+      table.integer("user").references("id").inTable("user");
+      table.integer("project").references("id").inTable("project");
     })
-    .createTable("device", tbl => {
-      tbl.increments();
-      table.string('name').notNullable();
-      table.string('location').notNullable();
-      table.foreign("user").references("user_id").inTable("user").notNullable();
-      table.foreign("project").references("project_id").inTable("project");
+    .createTable("device", table => {
+      table.increments();
+      table.string("name").notNullable();
+      table.string("location").notNullable();
+      table.integer("user").references("id").inTable("user").notNullable();
+      table.integer("project").references("id").inTable("project");
     })
-    .createTable("model", tbl => {
-      tbl.increments();
-      table.string('name').notNullable();
-      table.foreign("project").references("project_id").inTable("project");
+    .createTable("model", table => {
+      table.increments();
+      table.string("name").notNullable();
+      table.integer("project").references("id").inTable("project");
     })
-    .createTable("app", tbl => {
-      tbl.increments();
-      table.string('name').notNullable();
-      table.foreign("project").references("project_id").inTable("project");
-    });
+    .createTable("app", table => {
+      table.increments();
+      table.string("name").notNullable();
+      table.integer("project").references("id").inTable("project");
+    })
+    .then(console.log('user_team_device schema built into alwaysAI DB'))
+    .catch(error => {console.log('DB build failed', error)})
 };
 
 exports.down = function(knex) {
-  knex.schema
+  return knex.schema
     .dropTableIfExists("app")
     .dropTableIfExists("model")
     .dropTableIfExists("device")
