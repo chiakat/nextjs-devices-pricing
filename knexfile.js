@@ -22,9 +22,9 @@ module.exports = {
       database: process.env.DB_NAME
     },
     migrations: {
-      directory: './data/migrations',
+      directory: './db/migrations',
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: './db/seeds' },
   },
 
   testing: {
@@ -37,9 +37,9 @@ module.exports = {
       database: process.env.DB_NAME
     },
     migrations: {
-      directory: './data/migrations',
+      directory: './db/migrations',
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: './db/seeds' },
   },
 
   production: {
@@ -52,8 +52,8 @@ module.exports = {
       database: process.env.DB_NAME
     },
     migrations: {
-      directory: './data/migrations',
+      directory: './db/migrations',
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: './db/seeds' },
   },
 };

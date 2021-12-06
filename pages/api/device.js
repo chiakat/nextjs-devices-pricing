@@ -1,4 +1,6 @@
 const Device = require("../models").Device;
+require('dotenv').config();
+
 
 module.exports = {
   create(req, res) {
