@@ -1,24 +1,55 @@
-// // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+const knex = require("../../db/knex");
 
-// export default function handler(req, res) {
-//   res.status(200).json({ name: 'John Doe' })
-// }
-
-const knex = require("../../db/knex"); // importing the db config
-
-function getDevices(req,res) {
+function getDevices(req, res) {
   knex('device')
   .select({
     id: 'id',
-    name: 'name'
+    name: 'name',
+    location: 'location'
   })
-  .then((devices) => {
-    return res.json(devices);
-  })
-  .catch((err) => {
-    console.error(err);
-    return res.json({success: false, message: 'An error occurred, please try again later.'});
-  })
+  .then((devices) => res.status(200).json(devices))
+  .catch(err => res.status(500).send(err));
+}
+
+function addDevice(req, res){
+  const {name, location} = req.body;
+  if (!name) {
+    return res.json({success: false, message: 'Name is required'});
+  }
+  if (!location) {
+    return res.json({success: false, message: 'Location is required'});
+  }
+
+  knex('device')
+    .insert({name, location})
+    .then((id) => {
+      //get device by id
+      knex('device')
+        .select({name, location})
+        .where({id})
+        .then(device => res.status(201).json(device[0]))
+    })
+    .catch(err => res.status(500).send(err));
+}
+
+function updateDevice(req, res){
+  const {name, location} = req.body;
+  knex('device')
+    .where({id: req.params.id})
+    .update({name, location})
+    .then(device => res.status(!!device ? 200 : 404)
+      .json({success: !!device}))
+    .catch(err => res.status(500).send(err));
+}
+
+function deleteDevice(req, res){
+  const {name, location} = req.body;
+  knex('device')
+    .where({id: req.params.id})
+    .del()
+    .then(device => res.status(!!device ? 200 : 404)
+      .json({success: !!device}))
+    .catch(err => res.status(500).send(err));
 }
 
 export default async function handler(req, res) {
@@ -41,23 +72,3 @@ export default async function handler(req, res) {
         }
     }
 }
-
-
-// module.exports = app => {
-//   app.get("/api", (req, res) =>
-//     res.status(200).send({
-//       message: "Welcome to the API!"
-//     })
-//   );
-
-  // // POST device
-  // app.post("/api/device", deviceController.create);
-  // // GET list of all devices
-  // app.get("/api/device", deviceController.list);
-  // // GET a single device by ID
-  // app.get("/api/device/:deviceId", deviceController.retrieve);
-  // // UPDATE a single device by ID
-  // app.put("/api/device/:deviceId", deviceController.update);
-  // // DELETE a single device by ID
-  // app.delete("/api/device/:deviceId", deviceController.delete);
-// };
