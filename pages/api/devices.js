@@ -1,18 +1,25 @@
 const knex = require('../../db/knex');
 
 function getDevices(req, res) {
-  knex('device')
+  knex('devices')
     .select({
       id: 'id',
       name: 'name',
       location: 'location',
+      user: 'user',
+      project: 'project',
     })
-    .then((devices) => res.status(200).json(devices))
+    .then((devices) => {
+      res.status(200).json(devices);
+      res.end();
+    })
     .catch((err) => res.status(500).send(err));
 }
 
 function addDevice(req, res) {
-  const { name, location, project, user } = req.body;
+  const {
+    name, location, project, user,
+  } = req.body;
   if (!name) {
     return res.json({ success: false, message: 'Name is required' });
   }
@@ -20,14 +27,13 @@ function addDevice(req, res) {
     return res.json({ success: false, message: 'Location is required' });
   }
 
-  knex('device')
-    .insert({ name, location })
-    .then((id) => {
-      // get device by id
-      knex('device')
-        .select({ name, location, project, user })
-        .where({ id })
-        .then((device) => res.status(201).json(device[0]));
+  knex('devices')
+    .insert({
+      name, location, project, user,
+    }, ['id', 'name', 'location', 'project', 'user'])
+    .then((device) => {
+      res.status(201).json(device);
+      res.end();
     })
     .catch((err) => res.status(500).send(err));
 }
@@ -35,21 +41,24 @@ function addDevice(req, res) {
 function updateDevice(req, res) {
   const { name, location } = req.body;
   console.log(req);
-  knex('device')
+  knex('devices')
     .where({ id: req.params.id })
     .update({ name, location })
-    .then((device) => res.status(device ? 200 : 404)
-      .json({ success: !!device }))
+    .then((device) => {
+      res.status(device ? 200 : 404).json({ success: !!device });
+      res.end();
+    })
     .catch((err) => res.status(500).send(err));
 }
 
 function deleteDevice(req, res) {
-  const { name, location } = req.body;
-  knex('device')
+  knex('devices')
     .where({ id: req.params.id })
     .del()
-    .then((device) => res.status(device ? 200 : 404)
-      .json({ success: !!device }))
+    .then((device) => {
+      res.status(device ? 200 : 404).json({ success: !!device });
+      res.end();
+    })
     .catch((err) => res.status(500).send(err));
 }
 
@@ -71,5 +80,8 @@ export default async function handler(req, res) {
     case 'DELETE': {
       return deleteDevice(req, res);
     }
+
+    default:
+      console.log('no matching methods');
   }
 }

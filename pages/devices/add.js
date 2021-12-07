@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Nav from '../components/nav';
-import styles from '../styles/home.module.css';
+import Layout from '../../components/layout';
+import styles from '../../styles/home.module.css';
 
 export default function AddDevice() {
   const [name, setName] = useState('');
@@ -23,7 +23,9 @@ export default function AddDevice() {
 
     const response = await fetch('/api/devices', {
       method: 'POST',
-      body: JSON.stringify({ name, location, user, project }),
+      body: JSON.stringify({
+        name, location, user, project,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -33,8 +35,7 @@ export default function AddDevice() {
   };
 
   return (
-    <div>
-      <Nav />
+    <Layout>
       <div className={styles.container}>
         <form onSubmit={handleDevice} className={styles.form}>
           {error ? (
@@ -70,7 +71,7 @@ export default function AddDevice() {
           <div className={styles.formItem}>
             <label>Project</label>
             <input
-              type="text"
+              type="number"
               name="project"
               onChange={(e) => setProject(e.target.value)}
               value={project}
@@ -78,10 +79,20 @@ export default function AddDevice() {
             />
           </div>
           <div className={styles.formItem}>
+            <label>User</label>
+            <input
+              type="number"
+              name="user"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              placeholder="user"
+            />
+          </div>
+          <div className={styles.formItem}>
             <button type="submit">Add Device</button>
           </div>
         </form>
       </div>
-    </div>
+    </Layout>
   );
 }

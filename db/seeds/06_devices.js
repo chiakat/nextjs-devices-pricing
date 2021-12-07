@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
-  return knex('device').del()
+  return knex('devices').del()
     .then(function () {
-      return knex('device').insert([
+      return knex('devices').insert([
         {
           id: 1,
           name: 'Device 1',

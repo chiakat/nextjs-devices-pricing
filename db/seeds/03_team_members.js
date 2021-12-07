@@ -1,8 +1,8 @@
 
 exports.seed = function(knex) {
-  return knex('team_member').del()
+  return knex('teams_members').del()
     .then(function () {
-      return knex('team_member').insert([
+      return knex('teams_members').insert([
         {
           id: 1,
           member: 1,

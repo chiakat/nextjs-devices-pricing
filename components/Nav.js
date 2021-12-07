@@ -11,17 +11,17 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/view-devices">
+          <Link href="/devices/view">
             <a>View Devices</a>
           </Link>
         </li>
         <li>
-          <Link href="/add-device">
+          <Link href="/devices/add">
             <a>Add Device</a>
           </Link>
         </li>
         <li>
-          <Link href="/update-device">
+          <Link href="/devices/update">
             <a>Update/Delete</a>
           </Link>
         </li>
