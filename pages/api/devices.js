@@ -39,11 +39,14 @@ function addDevice(req, res) {
 }
 
 function updateDevice(req, res) {
-  const { name, location } = req.body;
-  console.log(req);
+  const id = Number(req.query.id);
+  if (Number.isNaN(id)) {
+    res.status(404).send('Invalid item id');
+  }
+  const { name, location, project } = req.body;
   knex('devices')
-    .where({ id: req.params.id })
-    .update({ name, location })
+    .where({ id })
+    .update({ name, location, project })
     .then((device) => {
       res.status(device ? 200 : 404).json({ success: !!device });
       res.end();
@@ -52,8 +55,12 @@ function updateDevice(req, res) {
 }
 
 function deleteDevice(req, res) {
+  const id = Number(req.query.id);
+  if (Number.isNaN(id)) {
+    res.status(404).send('Invalid item id');
+  }
   knex('devices')
-    .where({ id: req.params.id })
+    .where({ id })
     .del()
     .then((device) => {
       res.status(device ? 200 : 404).json({ success: !!device });
@@ -82,6 +89,6 @@ export default async function handler(req, res) {
     }
 
     default:
-      console.log('no matching methods');
+      console.log('no available actions');
   }
 }

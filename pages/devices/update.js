@@ -13,7 +13,7 @@ export default function UpdateDevices({ device }) {
 
     try {
       // Update device
-      await fetch(`/api/devices/:${deviceId}`, {
+      await fetch(`/api/devices?id=${deviceId}`, {
         method: 'PUT',
       });
       // reset the updating state
@@ -33,7 +33,7 @@ export default function UpdateDevices({ device }) {
 
     try {
       // Delete device
-      await fetch(`/api/devices/:${deviceId}`, {
+      await fetch(`/api/devices?id=${deviceId}`, {
         method: 'DELETE',
       });
       // reset the deleting state
