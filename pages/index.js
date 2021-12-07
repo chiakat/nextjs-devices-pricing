@@ -4,6 +4,7 @@ import Devices from '../components/devices';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import styles from '../styles/home.module.css';
+import { userService } from 'services';
 
 export default function Home() {
   return (
@@ -11,7 +12,13 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <div> You are Home </div>
+      <div className="p-4">
+            <div className="container">
+                <h1>Hi {userService.userValue?.firstName}!</h1>
+                <p>You&apos;re logged in with Next.js & JWT!!</p>
+                <p><Link href="/users">Manage Users</Link></p>
+            </div>
+        </div>
     </Layout>
   );
 }
