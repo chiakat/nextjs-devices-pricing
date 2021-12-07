@@ -1,8 +1,21 @@
 import Head from 'next/head';
-
-import Nav from '../components/Nav';
-import UpdateDevice from '../components/UpdateDevice';
+import Image from 'next/image'
+import Link from 'next/link';
+import Nav from '../components/nav';
+import Devices from '../components/devices';
+import Layout, { siteTitle } from '../components/layout';
+import utilStyles from '../styles/utils.module.css'
 import styles from '../styles/Home.module.css';
+// import { getSortedPostsData } from '../lib/posts'
+
+// export async function getStaticProps() {
+//   const allDevicesData = getSortedPostsData()
+//   return {
+//     props: {
+//       allPostsData
+//     }
+//   }
+// }
 
 export default function Home({ devices }) {
   return (
@@ -20,7 +33,7 @@ export default function Home({ devices }) {
           ) : (
             <ul>
               {devices.map((device, i) => (
-                <UpdateDevice device={device} key={i} />
+                <Devices device={device} key={i} />
               ))}
             </ul>
           )}
@@ -35,7 +48,7 @@ export default function Home({ devices }) {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
@@ -43,20 +56,16 @@ export default function Home({ devices }) {
   )
 }
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps() {
   // get the current environment
-  let dev = process.env.NODE_ENV !== 'production';
-  let { DEV_URL, PROD_URL } = process.env;
-
-  // request devices from api
-  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/devices`);
-  // extract the data
-  let data = await response.json();
+  const dev = process.env.NODE_ENV !== 'production';
+  const { DEV_URL, PROD_URL } = process.env;
+  const res = await fetch(`${dev ? DEV_URL : PROD_URL}/api/devices`);
+  const data = await res.json();
 
   return {
     props: {
-      // devices: ['device']
-      devices: data['device'],
+      devices: data,
     },
   };
 }

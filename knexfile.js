@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 require('dotenv').config();
 
 const knex = require('knex')({
@@ -7,8 +8,8 @@ const knex = require('knex')({
     port: 5432,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-  }
+    database: process.env.DB_NAME,
+  },
 });
 
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
       port: 5432,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
+      database: process.env.DB_NAME,
     },
     migrations: {
       directory: './db/migrations',
@@ -34,7 +35,7 @@ module.exports = {
       port: 5432,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
+      database: process.env.DB_NAME,
     },
     migrations: {
       directory: './db/migrations',
@@ -49,7 +50,7 @@ module.exports = {
       port: 5432,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
+      database: process.env.DB_NAME,
     },
     migrations: {
       directory: './db/migrations',
