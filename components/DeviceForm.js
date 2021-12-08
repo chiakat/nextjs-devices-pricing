@@ -32,13 +32,20 @@ export default function DeviceForm({ device }) {
     } else {
       response = await fetch(`/api/devices?id=${device.id}`, {
         method: 'PUT',
+        body: JSON.stringify({
+          name, location, user, project,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
     }
 
-    const data = await response.json();
+    const result = await response.json();
+    const data = action === 'Added' ? result[0] : result;
 
     if (data) {
-      return setMessage(`Success! ${action} ${data[0].name} located at ${data[0].location} for Project ${data[0].project}`);
+      return setMessage(`Success! ${action} ${data.name} located at ${data.location} for Project ${data.project}`);
     }
     return setError('Unable to process request. Please try again.');
   };
@@ -98,7 +105,7 @@ export default function DeviceForm({ device }) {
             />
           </div>
           <div className={styles.formItem}>
-            <button type="submit">Add Device</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>

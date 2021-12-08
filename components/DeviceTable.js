@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function DeviceTable({ devices }) {
   // const classes = useStyles();
@@ -29,6 +30,7 @@ export default function DeviceTable({ devices }) {
   //     return setUpdating(false);
   //   }
   // };
+  const updateDevice = async (deviceId) => router.push(`/devices/edit?id=${deviceId}`);
 
   // Delete device
   const deleteDevice = async (deviceId) => {
@@ -36,7 +38,7 @@ export default function DeviceTable({ devices }) {
     setDeleting(true);
 
     try {
-      await fetch(`/api/devices?id=${deviceId}`, {
+      await fetch(`/api/devices/:${deviceId}`, {
         method: 'DELETE',
       });
       setDeleting(false);

@@ -24,6 +24,12 @@ export async function getServerSideProps() {
   const res = await fetch(`${dev ? DEV_URL : PROD_URL}/api/devices`);
   const data = await res.json();
 
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       devices: data,
