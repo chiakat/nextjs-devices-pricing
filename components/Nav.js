@@ -6,16 +6,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { alpha, useTheme, styled } from '@mui/material/styles';
-
-const NavBarStyle = styled((AppBar))({
-  background: 'white',
-  color: 'grey',
-  fontSize: '12px',
-});
 
 export default function Nav() {
-  const theme = useTheme();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ background: 'white', color: 'grey', fontSize: '12px' }}>
@@ -54,7 +46,13 @@ export default function Nav() {
             <a>Pricing</a>
           </Link>
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Models
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Docs
+          </Typography>
+          <Button color="inherit">Log In</Button>
         </Toolbar>
       </AppBar>
     </Box>

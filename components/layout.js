@@ -4,27 +4,13 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Nav from './Nav';
-import {
-  ThemeProvider,
-  CssBaseline,
-  Typography,
-  Grid,
-  Box,
-  Container,
-  Paper,
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-} from '@mui/material';
-import myTheme from '../theme/index.js';
+import Footer from './Footer';
 
 const name = 'User';
 export const siteTitle = 'alwaysAI Manage Devices';
 
 export default function Layout({ children, home }) {
   return (
-    <ThemeProvider theme={myTheme}>
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
@@ -51,6 +37,7 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
+      <Footer />
       <footer className={styles.footer}>
       <a
         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -59,11 +46,10 @@ export default function Layout({ children, home }) {
       >
         Powered by{' '}
         <span className={styles.logo}>
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          <Image src="/images/vercel.svg" alt="Vercel Logo" width={72} height={16} />
         </span>
       </a>
     </footer>
     </div>
-    </ThemeProvider>
   );
 }

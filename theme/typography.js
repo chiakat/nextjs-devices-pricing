@@ -1,101 +1,123 @@
-// ----------------------------------------------------------------------
+import * as React from 'react';
+import PropTypes from 'prop-types';
 
-function pxToRem(value) {
-  return `${value / 16}rem`;
-}
+import { withStyles } from '@mui/styles';
+import MuiTypography from '@mui/material/Typography';
 
-function responsiveFontSizes({ sm, md, lg }) {
-  return {
-    '@media (min-width:600px)': {
-      fontSize: pxToRem(sm),
-    },
-    '@media (min-width:900px)': {
-      fontSize: pxToRem(md),
-    },
-    '@media (min-width:1200px)': {
-      fontSize: pxToRem(lg),
-    },
-  };
-}
-
-const FONT_PRIMARY = 'Heebo, Karla, Public Sans, sans-serif';
-
-const typography = {
-  fontFamily: FONT_PRIMARY,
-  fontWeightRegular: 400,
-  fontWeightMedium: 600,
-  fontWeightBold: 700,
-  h1: {
-    fontWeight: 700,
-    lineHeight: 80 / 64,
-    fontSize: pxToRem(40),
-    ...responsiveFontSizes({ sm: 52, md: 58, lg: 64 }),
+const markStyleMapping = {
+  center: {
+    h1: '',
+    h2: 'markedH2Center',
+    h3: 'markedH3Center',
+    h4: 'markedH4Center',
+    h5: '',
+    h6: '',
   },
-  h2: {
-    fontWeight: 700,
-    lineHeight: 64 / 48,
-    fontSize: pxToRem(32),
-    ...responsiveFontSizes({ sm: 40, md: 44, lg: 48 }),
+  left: {
+    h1: '',
+    h2: '',
+    h3: '',
+    h4: '',
+    h5: '',
+    h6: 'markedH6Left',
   },
-  h3: {
-    fontWeight: 700,
-    lineHeight: 1.5,
-    fontSize: pxToRem(24),
-    ...responsiveFontSizes({ sm: 26, md: 30, lg: 32 }),
-  },
-  h4: {
-    fontWeight: 700,
-    lineHeight: 1.5,
-    fontSize: pxToRem(20),
-    ...responsiveFontSizes({ sm: 20, md: 24, lg: 24 }),
-  },
-  h5: {
-    fontWeight: 700,
-    lineHeight: 1.5,
-    fontSize: pxToRem(18),
-    ...responsiveFontSizes({ sm: 19, md: 20, lg: 20 }),
-  },
-  h6: {
-    fontWeight: 700,
-    lineHeight: 28 / 18,
-    fontSize: pxToRem(17),
-    ...responsiveFontSizes({ sm: 18, md: 18, lg: 18 }),
-  },
-  subtitle1: {
-    fontWeight: 600,
-    lineHeight: 1.5,
-    fontSize: pxToRem(16),
-  },
-  subtitle2: {
-    fontWeight: 600,
-    lineHeight: 22 / 14,
-    fontSize: pxToRem(14),
-  },
-  body1: {
-    lineHeight: 1.5,
-    fontSize: pxToRem(16),
-  },
-  body2: {
-    lineHeight: 22 / 14,
-    fontSize: pxToRem(14),
-  },
-  caption: {
-    lineHeight: 1.5,
-    fontSize: pxToRem(12),
-  },
-  overline: {
-    fontWeight: 700,
-    lineHeight: 1.5,
-    fontSize: pxToRem(12),
-    letterSpacing: 1.1,
-    textTransform: 'uppercase',
-  },
-  button: {
-    fontWeight: 700,
-    lineHeight: 24 / 14,
-    fontSize: pxToRem(14),
-    textTransform: 'capitalize',
+  none: {
+    h1: '',
+    h2: '',
+    h3: '',
+    h4: '',
+    h5: '',
+    h6: '',
   },
 };
 
-export default typography;
+const styles = (theme) => ({
+  [markStyleMapping.center.h2]: {
+    height: 4,
+    width: 73,
+    display: 'block',
+    margin: `${theme.spacing(1)} auto 0`,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  [markStyleMapping.center.h3]: {
+    height: 4,
+    width: 55,
+    display: 'block',
+    margin: `${theme.spacing(1)} auto 0`,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  [markStyleMapping.center.h4]: {
+    height: 4,
+    width: 55,
+    display: 'block',
+    margin: `${theme.spacing(1)} auto 0`,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  [markStyleMapping.left.h6]: {
+    height: 2,
+    width: 28,
+    display: 'block',
+    marginTop: theme.spacing(0.5),
+    background: 'currentColor',
+  },
+});
+
+const variantMapping = {
+  h1: 'h1',
+  h2: 'h1',
+  h3: 'h1',
+  h4: 'h1',
+  h5: 'h3',
+  h6: 'h2',
+  subtitle1: 'h3',
+};
+
+function Typography(props) {
+  const { children, variant, classes, marked = 'none', ...other } = props;
+
+  let markedClassName = '';
+  if (variant && variant in markStyleMapping[marked]) {
+    markedClassName = classes[markStyleMapping[marked][variant]];
+  }
+
+  return (
+    <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
+      {children}
+      {markedClassName ? <span className={markedClassName} /> : null}
+    </MuiTypography>
+  );
+}
+
+Typography.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object.isRequired,
+  marked: PropTypes.oneOf(['center', 'left', 'none']),
+  /**
+   * Applies the theme typography styles.
+   * @default 'body1'
+   */
+  variant: PropTypes.oneOf([
+    'body1',
+    'body2',
+    'button',
+    'caption',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'inherit',
+    'overline',
+    'subtitle1',
+    'subtitle2',
+  ]),
+};
+
+export default withStyles(styles)(Typography);

@@ -1,52 +1,113 @@
-// /* eslint-disable import/extensions */
-// import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+import { green, grey, red } from '@mui/material/colors';
+import HeeboBold from '../public/fonts/Heebo/Heebo-Bold.ttf';
+import Heebo from '../public/fonts/Heebo/Heebo-Regular.ttf';
+import HeeboMedium from '../public/fonts/Heebo/Heebo-Medium.ttf';
+import KarlaBold from '../public/fonts/Karla/Karla-Bold.ttf';
+import Karla from '../public/fonts/Karla/Karla-Regular.ttf';
+import KarlaMedium from '../public/fonts/Karla/Karla-Medium.ttf';
 
-// const myTheme = createTheme({
-//   typography: {
-//     fontFamily: "'Source Sans Pro', sans-serif",
-//     fontSize: 14,
-//     fontWeightLight: 300,
-//     fontWeightRegular: 400,
-//     fontWeightMedium: 700,
-//     h1: {
-//       fontFamily: "'Kalam', sans-serif",
-//       fontWeight: 600,
-//     },
-//     h2: {
-//       fontFamily: "'Kalam', sans-serif",
-//       fontSize: 44,
-//       fontWeight: 400,
-//       marginbottom: 12,
-//     },
-//     h4: {
-//       fontWeight: 300,
-//       margin: 0,
-//     },
-//     h5: {
-//       // fontFamily: "'Kalam', sans-serif",
-//       fontSize: 18,
-//       fontColor: 'white',
-//       margin: 0,
-//     },
-//     h6: {
-//       fontFamily: "'Kalam', sans-serif",
-//       fontSize: 22,
-//     },
-//   },
-//   palette: {
-//     type: 'light',
-//     primary: {
-//       main: '#609e00',
-//       light: '#B0C800',
-//     },
-//     secondary: {
-//       main: '#F24B6A',
-//     },
-//     success: {
-//       main: '#4caf50',
-//       light: '#B0C800',
-//     },
-//   },
-// });
+const rawTheme = createTheme({
+  palette: {
+    primary: {
+      light: '#F2303A',
+      main: '#C92C56',
+      dark: '#740C32',
+    },
+    secondary: {
+      light: '#fff5f8',
+      main: '#ff3366',
+      dark: '#4a051e',
+    },
+    warning: {
+      main: '#ffc071',
+      dark: '#ffb25e',
+    },
+    error: {
+      light: red[50],
+      main: red[500],
+      dark: red[700],
+    },
+    success: {
+      light: green[50],
+      main: green[500],
+      dark: green[700],
+    },
+  },
+  typography: {
+    fontFamily: "'Heebo', 'Karla', 'Work Sans', sans-serif",
+    fontSize: 14,
+    fontWeightLight: 300, // Work Sans
+    fontWeightRegular: 400, // Work Sans
+    fontWeightMedium: 700, // Roboto Condensed
+  },
+});
 
-// export default myTheme;
+const fontHeader = {
+  color: rawTheme.palette.text.primary,
+  fontWeight: rawTheme.typography.fontWeightMedium,
+  fontFamily: "'Roboto Condensed', sans-serif",
+  textTransform: 'uppercase',
+};
+
+const theme = {
+  ...rawTheme,
+  palette: {
+    ...rawTheme.palette,
+    background: {
+      ...rawTheme.palette.background,
+      default: rawTheme.palette.common.white,
+      placeholder: grey[200],
+    },
+  },
+  typography: {
+    ...rawTheme.typography,
+    fontHeader,
+    h1: {
+      ...rawTheme.typography.h1,
+      ...fontHeader,
+      letterSpacing: 0,
+      fontSize: 60,
+    },
+    h2: {
+      ...rawTheme.typography.h2,
+      ...fontHeader,
+      fontSize: 48,
+    },
+    h3: {
+      ...rawTheme.typography.h3,
+      ...fontHeader,
+      fontSize: 42,
+    },
+    h4: {
+      ...rawTheme.typography.h4,
+      ...fontHeader,
+      fontSize: 36,
+    },
+    h5: {
+      ...rawTheme.typography.h5,
+      fontSize: 20,
+      fontWeight: rawTheme.typography.fontWeightLight,
+    },
+    h6: {
+      ...rawTheme.typography.h6,
+      ...fontHeader,
+      fontSize: 18,
+    },
+    subtitle1: {
+      ...rawTheme.typography.subtitle1,
+      fontSize: 18,
+    },
+    body1: {
+      ...rawTheme.typography.body2,
+      fontWeight: rawTheme.typography.fontWeightRegular,
+      fontSize: 16,
+    },
+    body2: {
+      ...rawTheme.typography.body1,
+      fontSize: 14,
+    },
+  },
+};
+
+export default theme;
