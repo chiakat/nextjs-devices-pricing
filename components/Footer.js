@@ -1,38 +1,76 @@
 import * as React from 'react';
+import Image from 'next/image';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {
-  Box, Grid, Link, Container, TextField,
+  Box, Grid, Link, Container,
 } from '@mui/material';
 import Typography from '../theme/typography';
 
-function Copyright() {
-  return (
-    <React.Fragment>
-      {'© '}
-      <Link color="inherit" href="https://alwaysai.co/">
-        alwaysAI
-      </Link>{' '}
-      {new Date().getFullYear()}
-    </React.Fragment>
-  );
-}
-
 const iconStyle = {
-  width: 48,
-  height: 48,
+  width: 40,
+  height: 40,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: 'white',
-  mr: 1,
+  borderRadius: 2,
+  mr: 3,
   '&:hover': {
     bgcolor: 'secondary.light',
   },
 };
 
-export default function AppFooter() {
+function Logo() {
+  return (
+    <React.Fragment>
+      <Image src="/images/aai-logo.svg" alt="alwaysAI Logo" width={200} height={75} />
+      <Typography fontSize="sm" color="white">
+        2019 All rights reserved.
+      </Typography>
+      <Grid
+        container
+        direction="column"
+        justifyContent="flex-end"
+        spacing={2}
+        sx={{ height: 100 }}
+      >
+        <Grid item sx={{ display: 'flex' }}>
+          <Box component="a" href="https://facebook.com/" sx={iconStyle}>
+            <FacebookIcon />
+          </Box>
+          <Box
+            component="a"
+            href="https://twitter.com/"
+            sx={iconStyle}
+          >
+            <TwitterIcon />
+          </Box>
+          <Box
+            component="a"
+            href="https://github.com/"
+            sx={iconStyle}
+          >
+            <GitHubIcon />
+          </Box>
+          <Box component="a" href="https://facebook.com/" sx={iconStyle}>
+            <FacebookIcon />
+          </Box>
+          <Box
+            component="a"
+            href="https://github.com/"
+            sx={iconStyle}
+          >
+            <GitHubIcon />
+          </Box>
+        </Grid>
+      </Grid>
+    </React.Fragment>
+  );
+}
+
+export default function Footer() {
   return (
     <Typography
       component="footer"
@@ -40,76 +78,89 @@ export default function AppFooter() {
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
-            <Grid
-              container
-              direction="column"
-              justifyContent="flex-end"
-              spacing={2}
-              sx={{ height: 120 }}
-            >
-              <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://facebook.com/" sx={iconStyle}>
-                  <FacebookIcon />
+          <Grid item sx={{ width: 300 }} xs={6} sm={4} md={3}>
+            <Logo />
+          </Grid>
+            <Grid item xs={6} sm={4} md={2}>
+              <Typography variant="h6" marked="left" color="white" gutterBottom>
+                Overview
+              </Typography>
+              <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Products</Link>
                 </Box>
-                <Box
-                  component="a"
-                  href="https://twitter.com/"
-                  sx={iconStyle}
-                >
-                  <TwitterIcon />
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Use Cases</Link>
                 </Box>
-                <Box
-                  component="a"
-                  href="https://github.com/"
-                  sx={iconStyle}
-                >
-                  <GitHubIcon />
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Pricing</Link>
                 </Box>
-              </Grid>
-              <Grid item>
-                <Copyright />
-              </Grid>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Blog</Link>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={6} sm={4} md={2}>
+              <Typography variant="h6" marked="left" color="white" gutterBottom>
+                Resources
+              </Typography>
+              <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Docs</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Model Catalog</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Dashboard</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Terms of Use</Link>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={6} sm={4} md={2}>
+              <Typography variant="h6" marked="left" color="white" gutterBottom>
+                Company
+              </Typography>
+              <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>About</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Careers</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Press</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Privacy</Link>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={6} sm={4} md={2}>
+              <Typography variant="h6" marked="left" color="white" gutterBottom>
+                Contact
+              </Typography>
+              <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Typography color="pink">Support</Typography>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Typography color="pink">555-555-5555</Typography>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Link href="mailto:support@alwaysai.co" underline='hover' color='pink'>support@alwaysai.co</Link>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Typography color="pink">720 Stevens Ave #270</Typography>
+                </Box>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Typography color="pink">Solana Beach, Ca 92075</Typography>
+                </Box>
+              </Box>
             </Grid>
           </Grid>
-          <Grid item xs={6} sm={4} md={2}>
-            <Typography variant="h6" marked="left" gutterBottom>
-              Legal
-            </Typography>
-            <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="https://alwaysai.co/">Terms</Link>
-              </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="https://alwaysai.co/">Privacy</Link>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={6} sm={8} md={4}>
-          More Links Here
-          </Grid>
-          <Grid item>
-            <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
-                Freepik
-              </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
-                www.flaticon.com
-              </Link>
-              {' is licensed by '}
-              <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
-                title="Creative Commons BY 3.0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography>
-          </Grid>
-        </Grid>
       </Container>
     </Typography>
   );
