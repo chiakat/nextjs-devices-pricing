@@ -21,8 +21,8 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/devices/update">
-            <a>Update/Delete</a>
+          <Link href="/devices/edit">
+            <a>Edit</a>
           </Link>
         </li>
         <li>

@@ -67,7 +67,13 @@ function updateDevice(id, req, res) {
     .where({ id })
     .update({ name, location, project })
     .then((device) => {
-      res.status(device ? 200 : 404).json({ success: !!device });
+      res.status(device ? 200 : 404).json({
+        success: !!device,
+        id,
+        name,
+        location,
+        project,
+      });
       res.end();
     })
     .catch((err) => res.status(500).send(err));

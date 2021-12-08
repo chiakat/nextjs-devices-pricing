@@ -32,8 +32,8 @@ export default function EditDevice({ id }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ query }) {
   return {
-    props: { id: params.id },
+    props: { id: query.id },
   };
 }

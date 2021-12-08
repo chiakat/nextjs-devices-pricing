@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from '../styles/home.module.css';
 
 export default function DeviceForm({ device }) {
+  const [action, setAction] = useState(device ? 'Updated' : 'Added');
   const [name, setName] = useState(device ? device.name : '');
   const [location, setLocation] = useState(device ? device.location : '');
   const [user, setUser] = useState(device ? device.user : '');
@@ -17,19 +18,34 @@ export default function DeviceForm({ device }) {
     // fields check
     if (!name || !location) return setError('All fields are required');
 
-    const response = await fetch('/api/devices', {
-      method: 'POST',
-      body: JSON.stringify({
-        name, location, user, project,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
+    let response;
+    if (!device) {
+      response = await fetch('/api/devices', {
+        method: 'POST',
+        body: JSON.stringify({
+          name, location, user, project,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else {
+      response = await fetch(`/api/devices?id=${device.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          name, location, user, project,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+
+    const result = await response.json();
+    const data = action === 'Added' ? result[0] : result;
 
     if (data) {
-      return setMessage(`Success! Added ${data[0].name} located ${data[0].location} for Project ${data[0].project}`);
+      return setMessage(`Success! ${action} ${data.name} located at ${data.location} for Project ${data.project}`);
     }
     return setError('Unable to process request. Please try again.');
   };
@@ -89,7 +105,7 @@ export default function DeviceForm({ device }) {
             />
           </div>
           <div className={styles.formItem}>
-            <button type="submit">Add Device</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>
