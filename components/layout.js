@@ -3,13 +3,28 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
-import Nav from './nav';
+import Nav from './Nav';
+import {
+  ThemeProvider,
+  CssBaseline,
+  Typography,
+  Grid,
+  Box,
+  Container,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+} from '@mui/material';
+import myTheme from '../theme/index.js';
 
 const name = 'User';
 export const siteTitle = 'alwaysAI Manage Devices';
 
 export default function Layout({ children, home }) {
   return (
+    <ThemeProvider theme={myTheme}>
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
@@ -49,5 +64,6 @@ export default function Layout({ children, home }) {
       </a>
     </footer>
     </div>
+    </ThemeProvider>
   );
 }
