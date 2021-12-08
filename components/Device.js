@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function UpdateDevices({ device }) {
+export default function DeviceList({ device }) {
   const [updating, setUpdating] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const router = useRouter();
@@ -46,10 +46,14 @@ export default function UpdateDevices({ device }) {
       return setDeleting(false);
     }
   };
+
   return (
     <li>
       <h3>{device.name}</h3>
+      <p>{device.id}</p>
       <p>{device.location}</p>
+      <p>{!device.user ? 'no user' : device.user}</p>
+      <p>{!device.project ? 'no project' : device.user}</p>
       <br />
       {!device.updated ? (
         <button type="button" onClick={() => updateDevice(device.id)}>

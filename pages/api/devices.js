@@ -1,6 +1,6 @@
 const knex = require('../../db/knex');
 
-function getDevices(req, res) {
+function getAllDevices(req, res) {
   knex('devices')
     .select({
       id: 'id',
@@ -11,6 +11,26 @@ function getDevices(req, res) {
     })
     .then((devices) => {
       res.status(200).json(devices);
+      res.end();
+    })
+    .catch((err) => res.status(500).send(err));
+}
+
+function getDeviceInfo(id, req, res) {
+  if (Number.isNaN(id)) {
+    res.status(404).send('Invalid device id');
+  }
+  knex('devices')
+    .select({
+      id: 'id',
+      name: 'name',
+      location: 'location',
+      user: 'user',
+      project: 'project',
+    })
+    .where({ id })
+    .then((device) => {
+      res.status(200).json(device);
       res.end();
     })
     .catch((err) => res.status(500).send(err));
@@ -38,8 +58,7 @@ function addDevice(req, res) {
     .catch((err) => res.status(500).send(err));
 }
 
-function updateDevice(req, res) {
-  const id = Number(req.query.id);
+function updateDevice(id, req, res) {
   if (Number.isNaN(id)) {
     res.status(404).send('Invalid item id');
   }
@@ -54,8 +73,7 @@ function updateDevice(req, res) {
     .catch((err) => res.status(500).send(err));
 }
 
-function deleteDevice(req, res) {
-  const id = Number(req.query.id);
+function deleteDevice(id, req, res) {
   if (Number.isNaN(id)) {
     res.status(404).send('Invalid item id');
   }
@@ -69,11 +87,14 @@ function deleteDevice(req, res) {
     .catch((err) => res.status(500).send(err));
 }
 
-export default async function handler(req, res) {
-  // switch the methods
+export default async function deviceService(req, res) {
+  const id = Number(req.query.id);
   switch (req.method) {
     case 'GET': {
-      return getDevices(req, res);
+      if (!id) {
+        return getAllDevices(req, res);
+      }
+      return getDeviceInfo(id, req, res);
     }
 
     case 'POST': {
@@ -81,11 +102,11 @@ export default async function handler(req, res) {
     }
 
     case 'PUT': {
-      return updateDevice(req, res);
+      return updateDevice(id, req, res);
     }
 
     case 'DELETE': {
-      return deleteDevice(req, res);
+      return deleteDevice(id, req, res);
     }
 
     default:
