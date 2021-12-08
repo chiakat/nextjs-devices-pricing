@@ -1,4 +1,3 @@
-// import DeviceList from '../../components/DeviceList';
 import DeviceTable from '../../components/DeviceTable';
 import Layout from '../../components/Layout';
 import styles from '../../styles/home.module.css';

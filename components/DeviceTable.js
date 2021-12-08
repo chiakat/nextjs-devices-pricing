@@ -1,52 +1,30 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-// import { makeStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import styles from '../styles/home.module.css';
+
 
 export default function DeviceTable({ devices }) {
-  // const classes = useStyles();
-  const [updating, setUpdating] = useState(false);
-  const [deleting, setDeleting] = useState(false);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const router = useRouter();
 
-  // // Update device
-  // const updateDevice = async (deviceId) => {
-  //   // change updating state
-  //   setUpdating(true);
-  //   try {
-  //     await fetch(`/api/devices?id=${deviceId}`, {
-  //       method: 'PUT',
-  //     });
-  //     setUpdating(false);
-  //     // reload the page
-  //     return router.push(router.asPath);
-  //   } catch (error) {
-  //     // Stop updating state
-  //     return setUpdating(false);
-  //   }
-  // };
   const updateDevice = async (deviceId) => router.push(`/devices/edit?id=${deviceId}`);
 
-  // Delete device
   const deleteDevice = async (deviceId) => {
-    // change deleting state
-    setDeleting(true);
-
+    // reset error and message
+    setError('');
+    setMessage('');
     try {
-      await fetch(`/api/devices/:${deviceId}`, {
+      await fetch(`/api/devices/?id=${deviceId}`, {
         method: 'DELETE',
       });
-      setDeleting(false);
-      // reload the page
       return router.push(router.asPath);
     } catch (error) {
-      // stop deleting state
-      return setDeleting(false);
+      return setError('Unable to delete');
     }
   };
 
@@ -87,15 +65,25 @@ export default function DeviceTable({ devices }) {
   const rows = devices;
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={50}
-        rowsPerPageOptions={[10]}
-        autoPageSize
-        // checkboxSelection
-      />
-    </div>
+    <>
+      <div className={styles.container}>
+        {error ? (
+            <h3 className={styles.error}>{error}</h3>
+        ) : null}
+        {message ? (
+            <h3 className={styles.message}>{message}</h3>
+        ) : null}
+      </div>
+      <div style={{ height: 400, width: '100%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={50}
+          rowsPerPageOptions={[10]}
+          autoPageSize
+          // checkboxSelection
+        />
+      </div>
+    </>
   );
 }
