@@ -1,9 +1,6 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import DeviceList from '../../components/DeviceList';
-import Layout, { siteTitle } from '../../components/Layout';
-import utilStyles from '../../styles/utils.module.css';
+// import DeviceList from '../../components/DeviceList';
+import DeviceTable from '../../components/DeviceTable';
+import Layout from '../../components/Layout';
 import styles from '../../styles/home.module.css';
 
 export default function ViewAll({ devices }) {
@@ -13,12 +10,7 @@ export default function ViewAll({ devices }) {
         {devices.length === 0 ? (
           <h2>No added devices</h2>
         ) : (
-          <DeviceList devices={devices} />
-          // <ul>
-          //   {devices.map((device, i) => (
-          //     <DeviceList device={device} key={i} />
-          //   ))}
-          // </ul>
+          <DeviceTable devices={devices} />
         )}
       </div>
     </Layout>
