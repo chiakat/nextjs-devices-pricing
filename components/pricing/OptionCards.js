@@ -1,11 +1,11 @@
 import * as React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import {
-  Paper, Typography, Grid, Container, List, ListItem, ListItemText, ListItemIcon,
+  Box, Typography, Grid, Container, List, ListItem, ListItemText, ListItemIcon,
 } from '@mui/material';
 
-const options = {
-  free: {
+const options = [
+  {
     name: 'Free',
     regMonthPrice: '0',
     regYearPrice: '',
@@ -18,8 +18,9 @@ const options = {
     ],
     supportType: 'Community support',
     supportDesc: 'Access to our community of developers for support issues.',
+    cardColor: 'white',
   },
-  developer: {
+  {
     name: 'Developer',
     regMonthPrice: '99',
     regYearPrice: '$1,188/yr',
@@ -32,8 +33,9 @@ const options = {
     ],
     supportType: 'Basic support',
     supportDesc: 'Lorem ipsum dolor sit arnet consectetuer adipsising elit.',
+    cardColor: 'white',
   },
-  team: {
+  {
     name: 'Team',
     regMonthPrice: '299',
     regYearPrice: '$3,788/yr',
@@ -46,245 +48,153 @@ const options = {
     ],
     supportType: 'Premium support',
     supportDesc: 'Access to private support with alwaysAI engineers.',
+    cardColor: 'secondary.light',
   },
-  enterprise: {
+  {
     name: 'Enterprise',
     regMonthPrice: '549',
     regYearPrice: '$7,188/yr',
     saveMonthPrice: '499',
     saveYearPrice: '$5,988/yr',
+    features: [
+      'Dedicated account management',
+      '24/7 support',
+      'On-prem solutions',
+      'Onboarding and training',
+      'Quarterly product reviews',
+    ],
+    tagline: 'Each project is unique',
+    subheader: 'Let\'s discuss your use case and craft a plan together and talk about:',
   },
-};
+];
+
+function cardHeader(option) {
+  return (
+    <Grid item sx={{ height: 120, m: 3 }} >
+      <Typography color="primary.dark" align="center" sx={{ p: 1 }}>
+        {option.name}
+      </Typography>
+      <Grid container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        >
+        <Grid item sx={{ mr: 3 }}> $ </Grid>
+        <Typography variant="h3" color="primary.main">
+          {option.regMonthPrice}
+        </Typography>
+        <Grid item sx={{ ml: 3 }}> /mo </Grid>
+      </Grid>
+      <Typography variant="body1" align="center" sx={{ p: 1, mb: 3 }}>
+        {option.regYearPrice}
+      </Typography>
+    </Grid>
+  );
+}
+
+function cardContent(option) {
+  if (option.name === 'Enterprise') {
+    return (
+      <Grid item sx={{
+        borderTop: 1,
+        borderColor: '#cfd4da',
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        backgroundColor: 'primary.dark',
+        p: 3,
+        height: 380,
+      }} >
+        <List disablePadding>
+          <Typography color='white' sx={{ lineHeight: 3, fontWeight: 'bold', pb: 1 }}>
+            {option.tagline}
+          </Typography>
+          <Typography color='white' sx={{ lineHeight: 1.25, pb: 3 }}>
+            {option.subheader}
+          </Typography>
+          <ul>
+            {option.features.map((feature) => (
+              <Typography component="li"
+                key={feature}
+                color='white'
+                sx={{ lineHeight: 2, fontWeight: 'bold' }}
+                >
+                {feature}
+              </Typography>
+            ))}
+          </ul>
+        </List>
+      </Grid>
+    );
+  }
+  return (
+    <Grid container>
+      <Grid item sx={{
+        height: 200,
+        borderTop: 1,
+        borderColor: '#cfd4da',
+        py: 3,
+        px: 1,
+      }}>
+        <List disablePadding>
+          {option.features.map((feature) => (
+            <ListItem key={feature}>
+              <ListItemIcon>
+                <CheckIcon style={{ color: 'red' }} />
+              </ListItemIcon>
+              <ListItemText primary={feature} />
+            </ListItem>
+          ))}
+        </List>
+      </Grid>
+      <Grid item sx={{
+        height: 180,
+        borderTop: 1,
+        borderColor: '#cfd4da',
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        py: 3,
+        px: 1,
+        backgroundColor: option.cardColor,
+      }}>
+        <List disablePadding>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon style={{ color: 'red' }} />
+            </ListItemIcon>
+            <ListItemText primary={option.supportType} />
+          </ListItem>
+          <Typography sx={{
+            color: '#757575',
+            pl: 9,
+            pr: 3,
+            fontSize: 14,
+            lineHeight: 1.6,
+          }}>
+           {option.supportDesc}
+          </Typography>
+        </List>
+      </Grid>
+    </Grid>
+  );
+}
 
 export default function OptionCards() {
   return (
     <Container disableGutters sx={{ mx: 1, my: 8, display: 'flex' }}>
-      <Grid container spacing={3}>
-        <Grid container item xs={12} sm={6} md={3}>
-          <Paper elevation={3} sx={{ minWidth: 250 }}>
-            <Grid item sx={{ height: 120, m: 3 }} >
-            <Typography color="primary.dark" align="center" sx={{ p: 1 }}>
-                {options.free.name}
-              </Typography>
-              <Grid container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                >
-                <Grid item sx={{ mr: 3 }}> $ </Grid>
-                <Typography variant="h3" color="primary.main">
-                  {options.free.regMonthPrice}
-                </Typography>
-                <Grid item sx={{ ml: 3 }}> /mo </Grid>
-              </Grid>
-              <Typography variant="body1" align="center" sx={{ p: 1, mb: 3 }}>
-                {options.free.regYearPrice}
-              </Typography>
-            </Grid>
-            <Grid item sx={{
-              height: 220, borderTop: 1, borderColor: '#cfd4da', py: 2, px: 1,
-            }} >
-              <List disablePadding>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.free.features[0]} />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.free.features[1]} />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.free.features[2]} />
-                </ListItem>
-              </List>
-            </Grid>
-            <Grid item sx={{
-              height: 150, borderTop: 1, borderColor: '#cfd4da', py: 2, px: 1,
-            }} >
-              <List disablePadding>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.free.supportType}
-                    secondary={options.free.supportDesc} />
-                </ListItem>
-              </List>
-            </Grid>
-          </Paper>
-        </Grid>
-
-        <Grid container item xs={12} sm={6} md={3}>
-          <Paper elevation={3} sx={{ minWidth: 250 }}>
-            <Grid item sx={{ height: 120, m: 3 }} >
-              <Typography color="primary.dark" align="center" sx={{ p: 1 }}>
-                {options.developer.name}
-              </Typography>
-              <Grid container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                >
-                <Grid item sx={{ mr: 3 }}> $ </Grid>
-                <Typography variant="h3" color="primary.main">
-                  {options.developer.regMonthPrice}
-                </Typography>
-                <Grid item sx={{ ml: 3 }}> /mo </Grid>
-              </Grid>
-              <Typography variant="body1" align="center" sx={{ p: 1, mb: 3 }}>
-                {options.developer.regYearPrice}
-              </Typography>
-            </Grid>
-            <Grid item sx={{
-              height: 220, borderTop: 1, borderColor: '#cfd4da', py: 2, px: 1,
-            }} >
-              <List disablePadding>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.developer.features[0]} />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.developer.features[1]} />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.developer.features[2]} />
-                </ListItem>
-              </List>
-            </Grid>
-            <Grid item sx={{
-              height: 150, borderTop: 1, borderColor: '#cfd4da', py: 2, px: 1,
-            }} >
-              <List disablePadding>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.developer.supportType}
-                    secondary={options.developer.supportDesc} />
-                </ListItem>
-              </List>
-            </Grid>
-          </Paper>
-        </Grid>
-
-        <Grid container item xs={12} sm={6} md={3}>
-          <Paper elevation={3} sx={{ minWidth: 250 }}>
-            <Grid item sx={{ height: 120, m: 3 }} >
-              <Typography color="primary.dark" align="center" sx={{ p: 1 }}>
-                {options.team.name}
-              </Typography>
-              <Grid container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                >
-                <Grid item sx={{ mr: 3 }}> $ </Grid>
-                <Typography variant="h3" color="primary.main">
-                  {options.team.regMonthPrice}
-                </Typography>
-                <Grid item sx={{ ml: 3 }}> /mo </Grid>
-              </Grid>
-              <Typography variant="body1" align="center" sx={{ p: 1, mb: 3 }}>
-                {options.team.regYearPrice}
-              </Typography>
-            </Grid>
-            <Grid item sx={{
-              height: 220, borderTop: 1, borderColor: '#cfd4da', py: 2, px: 1,
-            }} >
-              <List disablePadding>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.team.features[0]} />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.team.features[1]} />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <CheckIcon style={{ color: 'red' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={options.team.features[2]} />
-                </ListItem>
-              </List>
-            </Grid>
-            <Grid item sx={{
-              height: 150, borderTop: 1, borderColor: '#cfd4da', py: 2, px: 1, backgroundColor: 'secondary.light',
-            }} >
-              <List disablePadding>
-                  <ListItem>
-                    <ListItemIcon>
-                      <CheckIcon style={{ color: 'red' }} />
-                    </ListItemIcon>
-                    <ListItemText primary={options.team.supportType}
-                      secondary={options.team.supportDesc} />
-                  </ListItem>
-                </List>
-            </Grid>
-          </Paper>
-        </Grid>
-
-        <Grid container item xs={12} sm={6} md={3}>
-          <Paper elevation={3} sx={{ minWidth: 250 }}>
-            <Grid item sx={{ height: 120, m: 3 }} >
-              <Typography color="primary.dark" align="center" sx={{ p: 1 }}>
-                {options.enterprise.name}
-              </Typography>
-              <Grid container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                >
-                <Grid item sx={{ mr: 3 }}> $ </Grid>
-                <Typography variant="h3" color="primary.main">
-                  {options.enterprise.regMonthPrice}
-                </Typography>
-                <Grid item sx={{ ml: 3 }}> /mo </Grid>
-              </Grid>
-              <Typography variant="body1" align="center" sx={{ p: 1, mb: 3 }}>
-                {options.enterprise.regYearPrice}
-              </Typography>
-            </Grid>
-            <Grid item sx={{
-              borderTop: 1, borderColor: '#cfd4da', backgroundColor: 'primary.dark', p: 2, height: 370,
-            }} >
-              <List disablePadding>
-                <Typography color='white' sx={{ lineHeight: 3 }}>
-                  <b>Each project is unique</b>
-                </Typography>
-                <Typography color='white' sx={{ lineHeight: 1.25 }}>
-                  Let's discuss your use case and craft a plan together and talk about:<br /><br />
-                </Typography>
-                <Typography color='white' sx={{ lineHeight: 2 }}>
-                  <b>Dedicated account management</b><br />
-                  <b>24/7 support</b><br />
-                  <b>On-prem solutions</b><br />
-                  <b>Onboarding and training</b><br />
-                  <b>Quarterly product reviews</b>
-                </Typography>
-              </List>
-            </Grid>
-          </Paper>
-        </Grid>
+      <Grid container spacing={3} alignItems="flex-end">
+        {options.map((option) => (
+          <Grid container item key={option.name} xs={12} sm={6} md={3}>
+            <Box sx={{
+              backgroundColor: 'white',
+              boxShadow: 3,
+              borderRadius: 2,
+              minWidth: 250,
+            }}>
+              {cardHeader(option)}
+              {cardContent(option)}
+            </Box>
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );

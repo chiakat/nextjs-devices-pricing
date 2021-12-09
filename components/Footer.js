@@ -9,8 +9,8 @@ import {
 import Typography from '../theme/typography';
 
 const iconStyle = {
-  width: 40,
-  height: 40,
+  width: 30,
+  height: 30,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
