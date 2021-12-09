@@ -48,7 +48,7 @@ const options = {
     supportDesc: 'Access to private support with alwaysAI engineers.',
   },
   enterprise: {
-    name: 'Enterprise support',
+    name: 'Enterprise',
     regMonthPrice: '549',
     regYearPrice: '$7,188/yr',
     saveMonthPrice: '499',
@@ -58,8 +58,8 @@ const options = {
 
 export default function OptionCards() {
   return (
-    <Container sx={{ my: 8, display: 'flex' }}>
-      <Grid container spacing={5} direction="row">
+    <Container disableGutters sx={{ mx: 1, my: 8, display: 'flex' }}>
+      <Grid container spacing={3}>
         <Grid container item xs={12} sm={6} md={3}>
           <Paper elevation={3} sx={{ minWidth: 250 }}>
             <Grid item sx={{ height: 120, m: 3 }} >

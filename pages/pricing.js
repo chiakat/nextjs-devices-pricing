@@ -8,7 +8,6 @@ import OptionCards from '../components/pricing/OptionCards';
 import HelpCard from '../components/pricing/HelpCard';
 import Typography from '../theme/typography';
 
-
 export default function Pricing() {
   return (
     <Layout>

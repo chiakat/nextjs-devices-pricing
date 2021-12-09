@@ -21,21 +21,6 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Nav />
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <h1 className={utilStyles.heading2Xl}>{name} Devices</h1>
-          </>
-        ) : (
-          <>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name} Devices</a>
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
       <main>{children}</main>
       <Footer />
     </div>
