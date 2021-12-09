@@ -68,10 +68,12 @@ const options = [
   },
 ];
 
-function cardHeader(option) {
+function cardHeader(option, view) {
   return (
-    <Grid item sx={{ height: 120, m: 3 }} >
-      <Typography color="primary.dark" align="center" sx={{ p: 1 }}>
+    <Grid item sx={{ height: 140, m: 3 }} >
+      <Typography color="primary.dark" align="center" sx={{
+        p: 1, mb: 2, fontSize: 18, letterSpacing: 2,
+      }}>
         {option.name}
       </Typography>
       <Grid container
@@ -81,12 +83,12 @@ function cardHeader(option) {
         >
         <Grid item sx={{ mr: 3 }}> $ </Grid>
         <Typography variant="h3" color="primary.main">
-          {option.regMonthPrice}
+          {view === 'monthly' ? option.regMonthPrice : option.saveMonthPrice}
         </Typography>
         <Grid item sx={{ ml: 3 }}> /mo </Grid>
       </Grid>
-      <Typography variant="body1" align="center" sx={{ p: 1, mb: 3 }}>
-        {option.regYearPrice}
+      <Typography variant="body1" align="center" sx={{ p: 1, mb: 3, mt: 0.8 }}>
+        {view === 'monthly' ? option.regYearPrice : option.saveYearPrice}
       </Typography>
     </Grid>
   );
@@ -139,7 +141,7 @@ function cardContent(option) {
           {option.features.map((feature) => (
             <ListItem key={feature}>
               <ListItemIcon>
-                <CheckIcon style={{ color: 'red' }} />
+                <CheckIcon style={{ color: '#C92C56' }} />
               </ListItemIcon>
               <ListItemText primary={feature} />
             </ListItem>
@@ -159,7 +161,7 @@ function cardContent(option) {
         <List disablePadding>
           <ListItem>
             <ListItemIcon>
-              <CheckIcon style={{ color: 'red' }} />
+              <CheckIcon style={{ color: '#C92C56' }} />
             </ListItemIcon>
             <ListItemText primary={option.supportType} />
           </ListItem>
@@ -178,9 +180,11 @@ function cardContent(option) {
   );
 }
 
-export default function OptionCards() {
+export default function OptionCards({ view }) {
   return (
-    <Container disableGutters sx={{ mx: 1, my: 8, display: 'flex' }}>
+    <Container disableGutters sx={{
+      mx: 1, mt: 7, mb: 5, display: 'flex',
+    }}>
       <Grid container spacing={3} alignItems="flex-end">
         {options.map((option) => (
           <Grid container item key={option.name} xs={12} sm={6} md={3}>
@@ -190,7 +194,7 @@ export default function OptionCards() {
               borderRadius: 2,
               minWidth: 250,
             }}>
-              {cardHeader(option)}
+              {cardHeader(option, view)}
               {cardContent(option)}
             </Box>
           </Grid>

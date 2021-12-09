@@ -40,6 +40,36 @@ const rawTheme = createTheme({
     fontWeightLight: 300, // Work Sans
     fontWeightRegular: 400, // Work Sans
     fontWeightMedium: 700, // Roboto Condensed
+    button: {
+      textTransform: 'none',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        outlined: {
+          borderColor: grey[400],
+          color: grey[600],
+          backgroundColor: 'white',
+          '&:hover':
+            {
+              backgroundColor: 'primary.light',
+              borderColor: 'primary',
+              color: '#C92C56',
+            },
+        },
+      },
+    },
+    // MuiToggleButtonGroup: {
+    //   styleOverrides: {
+    //     backgroundColor: 'primary.dark',
+    //     borderColor: 'primary',
+    //     color: '#primary',
+    //     '&.Mui-disabled': {
+    //       border: 0,
+    //     },
+    //   },
+    // },
   },
 });
 
@@ -47,7 +77,6 @@ const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightMedium,
   fontFamily: "'Heebo', 'Karla', sans-serif",
-  textTransform: 'uppercase',
 };
 
 const theme = {
@@ -82,7 +111,8 @@ const theme = {
     h4: {
       ...rawTheme.typography.h4,
       ...fontHeader,
-      fontSize: 36,
+      fontSize: 30,
+      color: 'black',
     },
     h5: {
       ...rawTheme.typography.h5,
