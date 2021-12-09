@@ -15,7 +15,7 @@ const rawTheme = createTheme({
       dark: '#740C32',
     },
     secondary: {
-      light: '#fff5f8',
+      light: '#ffe5e5',
       main: '#ff3366',
       dark: '#4a051e',
     },
@@ -56,7 +56,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.common.white,
+      default: '#f7f9fa',
       placeholder: grey[200],
     },
   },

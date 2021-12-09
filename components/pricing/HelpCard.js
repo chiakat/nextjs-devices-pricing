@@ -17,25 +17,17 @@ const bull = (
 
 export default function OptionCard() {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 100, maxWidth: 500 }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
+        <Typography sx={{ mb: 1.5 }}>
+        We can help!
         </Typography>
         <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          If you need additional devices or collaborators on your project, give us a call and we'll craft a plan together to fit your needs.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="medium">Contact sales</Button>
       </CardActions>
     </Card>
   );

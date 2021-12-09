@@ -78,7 +78,7 @@ export default function Footer() {
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
-          <Grid item sx={{ width: 300 }} xs={6} sm={4} md={3}>
+          <Grid item sx={{ minWidth: 200, mr: 1 }} xs={6} sm={4} md={3}>
             <Logo />
           </Grid>
             <Grid item xs={6} sm={4} md={2}>
