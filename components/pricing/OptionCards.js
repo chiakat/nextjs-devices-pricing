@@ -164,7 +164,7 @@ function cardContent(option) {
             <ListItemText primary={option.supportType} />
           </ListItem>
           <Typography sx={{
-            color: '#757575',
+            color: '#666',
             pl: 9,
             pr: 3,
             fontSize: 14,
