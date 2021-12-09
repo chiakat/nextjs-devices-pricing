@@ -1,12 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { green, grey, red } from '@mui/material/colors';
-
-import HeeboBold from '../public/fonts/Heebo/Heebo-Bold.ttf';
-import Heebo from '../public/fonts/Heebo/Heebo-Regular.ttf';
-import HeeboMedium from '../public/fonts/Heebo/Heebo-Medium.ttf';
-import KarlaBold from '../public/fonts/Karla/Karla-Bold.ttf';
-import Karla from '../public/fonts/Karla/Karla-Regular.ttf';
-import KarlaMedium from '../public/fonts/Karla/Karla-Medium.ttf';
+import { grey } from '@mui/material/colors';
 
 const rawTheme = createTheme({
   palette: {
@@ -20,27 +13,13 @@ const rawTheme = createTheme({
       main: '#ff3366',
       dark: '#4a051e',
     },
-    warning: {
-      main: '#ffc071',
-      dark: '#ffb25e',
-    },
-    error: {
-      light: red[50],
-      main: red[500],
-      dark: red[700],
-    },
-    success: {
-      light: green[50],
-      main: green[500],
-      dark: green[700],
-    },
   },
   typography: {
-    fontFamily: "'DM Sans', 'Heebo', 'Karla', 'Work Sans', sans-serif",
+    fontFamily: "'DM Sans','Work Sans', sans-serif",
     fontSize: 14,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 700,
     button: {
       textTransform: 'none',
     },
@@ -77,7 +56,7 @@ const rawTheme = createTheme({
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightMedium,
-  fontFamily: "'DM Sans', 'Heebo', 'Karla', sans-serif",
+  fontFamily: "'DM Sans', sans-serif",
 };
 
 const theme = {
@@ -117,13 +96,15 @@ const theme = {
     },
     h5: {
       ...rawTheme.typography.h5,
-      fontSize: 20,
-      fontWeight: rawTheme.typography.fontWeightLight,
+      fontSize: 18,
+      fontColor: 'white',
+      fontWeight: rawTheme.typography.fontWeightMedium,
     },
     h6: {
       ...rawTheme.typography.h6,
       ...fontHeader,
-      fontSize: 18,
+      fontSize: 14,
+      fontWeight: rawTheme.typography.fontWeightLight,
     },
     subtitle1: {
       ...rawTheme.typography.subtitle1,

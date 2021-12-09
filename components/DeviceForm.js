@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import styles from '../styles/home.module.css';
+import {
+  Button, Box, Grid, TextField, Alert,
+} from '@mui/material';
 
 export default function DeviceForm({ device }) {
   const [action, setAction] = useState(device ? 'Updated' : 'Added');
@@ -19,7 +21,7 @@ export default function DeviceForm({ device }) {
     if (!name || !location) return setError('All fields are required');
 
     let response;
-    if (!device) {
+    if (action === 'Added') {
       response = await fetch('/api/devices', {
         method: 'POST',
         body: JSON.stringify({
@@ -45,6 +47,13 @@ export default function DeviceForm({ device }) {
     const data = action === 'Added' ? result[0] : result;
 
     if (data) {
+      // reset form for added device
+      if (action === 'Added') {
+        setName('');
+        setLocation('');
+        setProject('');
+        setUser('');
+      }
       return setMessage(`Success! ${action} ${data.name} located at ${data.location} for Project ${data.project}`);
     }
     return setError('Unable to process request. Please try again.');
@@ -52,63 +61,91 @@ export default function DeviceForm({ device }) {
 
   return (
     <>
-      <div className={styles.container}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          {error ? (
-            <div className={styles.formItem}>
-              <h3 className={styles.error}>{error}</h3>
-            </div>
-          ) : null}
-          {message ? (
-            <div className={styles.formItem}>
-              <h3 className={styles.message}>{message}</h3>
-            </div>
-          ) : null}
-          <div className={styles.formItem}>
-            <label>Device Name</label>
-            <input
-              type="text"
-              name="device name"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              placeholder="Device Name"
-            />
-          </div>
-          <div className={styles.formItem}>
-            <label>Location</label>
-            <input
-              type="text"
-              name="location"
-              onChange={(e) => setLocation(e.target.value)}
-              value={location}
-              placeholder="Location"
-            />
-          </div>
-          <div className={styles.formItem}>
-            <label>Project</label>
-            <input
-              type="number"
-              name="project"
-              onChange={(e) => setProject(e.target.value)}
-              value={project}
-              placeholder="Project"
-            />
-          </div>
-          <div className={styles.formItem}>
-            <label>User</label>
-            <input
-              type="number"
-              name="user"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              placeholder="user"
-            />
-          </div>
-          <div className={styles.formItem}>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ mb: 3 }}>
+          {error ? (<Alert severity="error">{error}</Alert>) : null}
+          {message ? (<Alert severity="success">{message}</Alert>) : null}
+        </Box>
+        <Box component="form" noValidate onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                name="deviceName"
+                required
+                fullWidth
+                id="name"
+                label="Device Name"
+                value={name}
+                autoFocus
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="location"
+                label="Device Location"
+                name="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="project"
+                label="Project ID"
+                name="project"
+                value={project}
+                onChange={(e) => setProject(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="user"
+                label="User ID"
+                type="user"
+                id="user"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
+              />
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="center"
+            >
+              <Button
+                type="submit"
+                // variant="contained"
+                sx={{ my: 3, mr: 2 }}
+                href="/devices/view"
+              >
+                View All Devices
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ my: 3 }}
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </>
   );
 }

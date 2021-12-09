@@ -45,7 +45,6 @@ export default function DeviceTable({ devices }) {
         }}>
         <EditIcon />
       </IconButton>
-
       ),
     },
     {
@@ -80,7 +79,6 @@ export default function DeviceTable({ devices }) {
           pageSize={50}
           rowsPerPageOptions={[10]}
           autoPageSize
-          // checkboxSelection
         />
       </div>
     </>

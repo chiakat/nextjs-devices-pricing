@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Image from 'next/image';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -16,7 +15,7 @@ const iconStyle = {
   alignItems: 'center',
   backgroundColor: 'white',
   borderRadius: 2,
-  mr: 3,
+  mr: 2,
   '&:hover': {
     bgcolor: 'secondary.light',
   },
@@ -25,15 +24,15 @@ const iconStyle = {
 function Logo() {
   return (
     <React.Fragment>
-      <Image src="/images/aai-logo.svg" alt="alwaysAI Logo" width={200} height={75} />
-      <Typography fontSize="sm" color="white">
+      <Box component="img" src="/images/aai-logo-white.svg" alt="alwaysAI Logo" width={200} height={75} />
+      <Typography fontSize="sm" sx={{ color: '#f7f9fa' }}>
         2019 All rights reserved.
       </Typography>
       <Grid
         container
         direction="column"
         justifyContent="flex-end"
-        spacing={2}
+        spacing={1}
         sx={{ height: 100 }}
       >
         <Grid item sx={{ display: 'flex' }}>
@@ -82,81 +81,81 @@ export default function Footer() {
             <Logo />
           </Grid>
             <Grid item xs={6} sm={4} md={2}>
-              <Typography variant="h6" marked="left" color="white" gutterBottom>
+              <Typography variant="h5" marked="left" color="white" gutterBottom>
                 Overview
               </Typography>
               <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Products</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Products</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Use Cases</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Use Cases</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Pricing</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Pricing</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Blog</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Blog</Link>
                 </Box>
               </Box>
             </Grid>
             <Grid item xs={6} sm={4} md={2}>
-              <Typography variant="h6" marked="left" color="white" gutterBottom>
+              <Typography variant="h5" marked="left" color="white" gutterBottom>
                 Resources
               </Typography>
               <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Docs</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Docs</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Model Catalog</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Model Catalog</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Dashboard</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Dashboard</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Terms of Use</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Terms of Use</Link>
                 </Box>
               </Box>
             </Grid>
             <Grid item xs={6} sm={4} md={2}>
-              <Typography variant="h6" marked="left" color="white" gutterBottom>
+              <Typography variant="h5" marked="left" color="white" gutterBottom>
                 Company
               </Typography>
               <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>About</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>About</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Careers</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Careers</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Press</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Press</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="https://alwaysai.co/" underline='hover' color='pink'>Privacy</Link>
+                  <Link href="https://alwaysai.co/" underline='hover' sx={{ color: '#ffbebe' }}>Privacy</Link>
                 </Box>
               </Box>
             </Grid>
             <Grid item xs={6} sm={4} md={2}>
-              <Typography variant="h6" marked="left" color="white" gutterBottom>
+              <Typography variant="h5" marked="left" color="white" gutterBottom>
                 Contact
               </Typography>
               <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Typography color="pink">Support</Typography>
+                  <Typography color="#ffbebe">Support</Typography>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Typography color="pink">555-555-5555</Typography>
+                  <Typography color="#ffbebe">555-555-5555</Typography>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Link href="mailto:support@alwaysai.co" underline='hover' color='pink'>support@alwaysai.co</Link>
+                  <Link href="mailto:support@alwaysai.co" underline='hover' sx={{ color: '#ffbebe' }}>support@alwaysai.co</Link>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Typography color="pink">720 Stevens Ave #270</Typography>
+                  <Typography color="#ffbebe">720 Stevens Ave #270</Typography>
                 </Box>
                 <Box component="li" sx={{ py: 0.5 }}>
-                  <Typography color="pink">Solana Beach, Ca 92075</Typography>
+                  <Typography color="#ffbebe">Solana Beach, Ca 92075</Typography>
                 </Box>
               </Box>
             </Grid>

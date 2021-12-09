@@ -1,17 +1,23 @@
 import DeviceTable from '../../components/DeviceTable';
 import Layout from '../../components/Layout';
-import styles from '../../styles/home.module.css';
+import { Grid, Button } from '@mui/material';
 
 export default function ViewAll({ devices }) {
   return (
     <Layout>
-      <div className={styles.container}>
+      <Grid container alignItems="center" sx={{ mx: 2, mb: 10 }}>
+      <h2>Your Devices</h2>
+      <Grid container item justifyContent="flex-end">
+        <Button variant="contained" href="/devices/add">
+          Add Device
+        </Button>
+      </Grid>
         {devices.length === 0 ? (
           <h2>No added devices</h2>
         ) : (
           <DeviceTable devices={devices} />
         )}
-      </div>
+      </Grid>
     </Layout>
   );
 }

@@ -1,58 +1,80 @@
 import Link from 'next/link';
 import {
-  AppBar, Box, Toolbar, Typography, Button,
+  AppBar, Box, Toolbar, Typography,
 } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+
+const mainNav = [
+  {
+    label: 'Products',
+    path: '/',
+  },
+  {
+    label: 'Use Cases',
+    path: '/',
+  },
+  {
+    label: 'Pricing',
+    path: '/pricing',
+  },
+  {
+    label: 'Blog',
+    path: '/',
+  },
+  {
+    label: 'Support',
+    path: '/',
+  },
+];
+
+const rightNav = [
+  {
+    label: 'Devices',
+    path: '/devices/view',
+  },
+  {
+    label: 'Models',
+    path: '/',
+  },
+  {
+    label: 'Docs',
+    path: '/',
+  },
+  {
+    label: 'Log In',
+    path: '/',
+  },
+];
 
 export default function Nav() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: 'white', color: 'grey', fontSize: '12px' }}>
-        <Toolbar >
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
+      <AppBar position="static" elevation={0} sx={{ background: 'none', color: 'grey', px: 5 }}>
+        <Toolbar>
+          <Box component="img"
+            src="/images/aai-logo-black.svg"
+            alt="alwaysAI Logo"
+            width={120}
+            height={40}
+            sx={{
+              minHeight: 50, flexGrow: 3, px: 3, py: 1, mr: 8,
+            }}
+          />
+          <Box sx={{ flexGrow: 1 }} />
+          {mainNav.map((item, i) => (
+          <Typography key={i} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link href={item.path}>
+              {item.label}
+            </Link>
           </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link href="/devices/view">
-            <a>View Devices</a>
-          </Link>
+          ))}
+          <Box sx={{ flexGrow: 1 }} />
+          {rightNav.map((item, i) => (
+          <Typography key={i} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link href={item.path}>
+              {item.label}
+            </Link>
           </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link href="/devices/add">
-            <a>Add Device</a>
-          </Link>
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link href="/devices/edit">
-            <a>Edit</a>
-          </Link>
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link href="/pricing">
-            <a>Pricing</a>
-          </Link>
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Models
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Docs
-          </Typography>
-          <Button color="inherit">Log In</Button>
+          ))}
         </Toolbar>
       </AppBar>
-    </Box>
   );
 }
