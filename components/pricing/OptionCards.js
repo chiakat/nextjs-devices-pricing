@@ -169,8 +169,8 @@ function cardContent(option) {
             color: '#666',
             pl: 9,
             pr: 3,
-            fontSize: 14,
-            lineHeight: 1.6,
+            fontSize: 15,
+            lineHeight: 1.5,
           }}>
            {option.supportDesc}
           </Typography>

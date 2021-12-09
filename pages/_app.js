@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import * as React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyles, CssBaseline } from '@mui/material';
+import '../theme/fonts.css';
 import theme from '../theme/theme';
 
 function MyApp({ Component, pageProps }) {

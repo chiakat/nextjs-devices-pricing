@@ -1,17 +1,14 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
-import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
 import Nav from './Nav';
 import Footer from './Footer';
+import { Container } from '@mui/material';
 
 const name = 'User';
 export const siteTitle = 'alwaysAI Manage Devices';
 
-export default function Layout({ children, home }) {
+export default function Layout({ children }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -21,7 +18,9 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Nav />
-      <main>{children}</main>
+      <main>
+        <Container sx= {{ width: '100%', px: 3 }}> {children} </Container>
+      </main>
       <Footer />
     </div>
   );

@@ -65,15 +65,15 @@ export default function Pricing() {
           <Grid
             container
             direction="column"
-            justifyContent="flex-end"
+            justifyContent="flex-start"
             spacing={2}
-            sx={{ height: 200 }}
+            sx={{ height: 225 }}
           >
-            <Grid item>
+            <Grid item sx={{ mt: 2 }}>
               <HelpCard />
             </Grid>
-            <Grid item>
-              <Image src="/images/cartoon.png" alt="Cartoon" width={400} height={200}/>
+            <Grid item align="right">
+              <Image src="/images/cartoon.png" alt="Cartoon" width={450} height={225}/>
             </Grid>
           </Grid>
         </Grid>

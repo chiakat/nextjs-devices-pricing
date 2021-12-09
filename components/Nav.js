@@ -1,9 +1,7 @@
 import Link from 'next/link';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import {
+  AppBar, Box, Toolbar, Typography, Button,
+} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -47,10 +45,10 @@ export default function Nav() {
           </Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Models
+            Models
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Docs
+            Docs
           </Typography>
           <Button color="inherit">Log In</Button>
         </Toolbar>

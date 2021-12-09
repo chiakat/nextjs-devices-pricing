@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import { green, grey, red } from '@mui/material/colors';
+
 import HeeboBold from '../public/fonts/Heebo/Heebo-Bold.ttf';
 import Heebo from '../public/fonts/Heebo/Heebo-Regular.ttf';
 import HeeboMedium from '../public/fonts/Heebo/Heebo-Medium.ttf';
@@ -35,7 +36,7 @@ const rawTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Heebo', 'Karla', 'Work Sans', sans-serif",
+    fontFamily: "'DM Sans', 'Heebo', 'Karla', 'Work Sans', sans-serif",
     fontSize: 14,
     fontWeightLight: 300, // Work Sans
     fontWeightRegular: 400, // Work Sans
@@ -49,7 +50,7 @@ const rawTheme = createTheme({
       styleOverrides: {
         outlined: {
           borderColor: grey[400],
-          color: grey[600],
+          color: grey[700],
           backgroundColor: 'white',
           '&:hover':
             {
@@ -76,7 +77,7 @@ const rawTheme = createTheme({
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightMedium,
-  fontFamily: "'Heebo', 'Karla', sans-serif",
+  fontFamily: "'DM Sans', 'Heebo', 'Karla', sans-serif",
 };
 
 const theme = {

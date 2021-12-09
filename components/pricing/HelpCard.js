@@ -9,17 +9,17 @@ export default function HelpCard() {
       boxShadow: 3,
       borderRadius: 2,
       minWidth: 250,
-      maxWidth: 500,
-      p: 3,
+      maxWidth: 580,
+      p: 4,
     }}>
       <Typography sx={{ mb: 1.5 }}>
         We can help!
       </Typography>
       <Typography variant="body2" sx={{
         color: '#666',
-        fontSize: 14,
-        lineHeight: 1.5,
-        mb: 3,
+        fontSize: 15,
+        lineHeight: 1.4,
+        mb: 4,
         mr: 1,
       }}>
         If you need additional devices or collaborators on your project,
