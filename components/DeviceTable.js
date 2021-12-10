@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import IconButton from '@mui/material/IconButton';
+import { IconButton, Alert, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/router';
-import styles from '../styles/home.module.css';
 
 export default function DeviceTable({ devices }) {
   const [error, setError] = useState('');
@@ -22,12 +21,11 @@ export default function DeviceTable({ devices }) {
         method: 'DELETE',
       });
       return router.push(router.asPath);
-    } catch (error) {
+    } catch (err) {
       return setError('Unable to delete');
     }
   };
 
-  const data = devices;
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -64,23 +62,18 @@ export default function DeviceTable({ devices }) {
 
   return (
     <>
-      <div className={styles.container}>
-        {error ? (
-            <h3 className={styles.error}>{error}</h3>
-        ) : null}
-        {message ? (
-            <h3 className={styles.message}>{message}</h3>
-        ) : null}
-      </div>
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={50}
-          rowsPerPageOptions={[10]}
-          autoPageSize
-        />
-      </div>
+      <Box sx={{ mb: 3 }}>
+        {error ? (<Alert severity="error">{error}</Alert>) : null}
+        {message ? (<Alert severity="success">{message}</Alert>) : null}
+      </Box>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={50}
+        rowsPerPageOptions={[10]}
+        autoPageSize
+        sx={{ height: 400, width: '100%' }}
+      />
     </>
   );
 }

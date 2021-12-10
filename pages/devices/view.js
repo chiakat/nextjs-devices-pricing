@@ -1,6 +1,6 @@
+import { Grid, Button } from '@mui/material';
 import DeviceTable from '../../components/DeviceTable';
 import Layout from '../../components/Layout';
-import { Grid, Button } from '@mui/material';
 
 export default function ViewAll({ devices }) {
   return (
