@@ -27,15 +27,23 @@ export default function DeviceTable({ devices }) {
   };
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Device name', width: 130 },
-    { field: 'location', headerName: 'Location', width: 130 },
-    { field: 'project', headerName: 'Project', width: 80 },
+    { field: 'id', headerName: 'ID', width: 80 },
+    {
+      field: 'name', headerName: 'Device name', flex: 1.8, minWidth: 80,
+    },
+    {
+      field: 'location', headerName: 'Location', flex: 1.8, minWidth: 80,
+    },
+    {
+      field: 'project', headerName: 'Project', flex: 1, minWidth: 50,
+    },
     // Note: user will be removed in the final output after authentication is added
-    { field: 'user', headerName: 'User', width: 80 },
+    {
+      field: 'user', headerName: 'User', flex: 1, minWidth: 50,
+    },
     {
       field: 'Edit',
-      width: 70,
+      width: 80,
       renderCell: (cellValues) => (
         <IconButton aria-label="update" color="primary"
         onClick={() => {
@@ -47,6 +55,7 @@ export default function DeviceTable({ devices }) {
     },
     {
       field: 'Delete',
+      width: 80,
       renderCell: (cellValues) => (
         <IconButton aria-label="delete" color="secondary"
           onClick={() => {
@@ -72,7 +81,7 @@ export default function DeviceTable({ devices }) {
         pageSize={50}
         rowsPerPageOptions={[10]}
         autoPageSize
-        sx={{ height: 400, width: '100%' }}
+        sx={{ height: 400, width: '100%', backgroundColor: 'white' }}
       />
     </>
   );
