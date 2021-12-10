@@ -1,5 +1,5 @@
-# alwaysAI Devices and Pricing
-This repo contains pages for alwaysAI Devices and Pricing. Users are able to add, update, delete, and view all their devices. On the Pricing page, users can toggle between monthly and yearly billing prices.
+# Devices and Pricing
+This repo contains pages for Devices and Pricing. Users are able to add, update, delete, and view all their devices. On the Pricing page, users can toggle between monthly and yearly billing prices.
 
 Created by <a href="https://github.com/chiakat">Katherine Yu</a>
 
