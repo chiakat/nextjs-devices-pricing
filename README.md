@@ -14,8 +14,8 @@ npm install
 Create database and seed data:
 
 ```bash
-npm migrate
-npm seed
+npm run migrate
+npm run seed
 ```
 
 Run and start the development server:
@@ -31,8 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 For testing:
 ```bash
-npm run dev
-npm start
+npm test
 ```
 
 ### Production

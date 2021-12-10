@@ -3,9 +3,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {
-  Box, Grid, Link, Container,
+  Box, Grid, Link, Container, Typography,
 } from '@mui/material';
-import Typography from '../theme/typography';
 
 const iconStyle = {
   width: 30,
@@ -125,8 +124,8 @@ function Logo() {
         sx={{ height: 100 }}
       >
         <Grid item sx={{ display: 'flex' }}>
-          {externalSites.map((site) => (
-            <Box component="a" key={site.link} href={site.link} sx={iconStyle}>
+          {externalSites.map((site, i) => (
+            <Box component="a" key={i + site.link} href={site.link} sx={iconStyle}>
               {site.icon}
             </Box>
           ))}

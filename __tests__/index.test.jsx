@@ -4,18 +4,18 @@
  * @jest-environment jsdom
  */
 
- import React from 'react'
- import { render, screen } from '@testing-library/react'
- import Home from '../pages/index'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Home from '../pages/index';
 
- describe('Home', () => {
-   it('renders a heading', () => {
-     render(<Home />)
+describe('Home', () => {
+  it('renders a logo', () => {
+    render(<Home />);
 
-     const heading = screen.getByRole('heading', {
-       name: /welcome to next\.js!/i,
-     })
+    const logo = screen.getAllByRole('img', {
+      name: 'alwaysAI Logo',
+    });
 
-     expect(heading).toBeInTheDocument()
-   })
- })
+    expect(logo[0]).toBeInTheDocument();
+  });
+});
