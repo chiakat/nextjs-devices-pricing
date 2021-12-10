@@ -6,7 +6,6 @@ export default function Home() {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
-        <h1>Welcome Home</h1>
       </Head>
     </Layout>
   );
