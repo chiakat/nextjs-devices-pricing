@@ -60,7 +60,7 @@ export default function Nav() {
           />
           <Box sx={{ flexGrow: 5 }} />
           {mainNav.map((item, i) => (
-          <Typography key={i} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography key={i + item} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href={item.path}>
               {item.label}
             </Link>
@@ -68,7 +68,7 @@ export default function Nav() {
           ))}
           <Box sx={{ flexGrow: 3 }} />
           {rightNav.map((item, i) => (
-          <Typography key={i} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography key={i + item} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href={item.path}>
               {item.label}
             </Link>

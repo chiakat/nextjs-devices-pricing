@@ -114,9 +114,9 @@ function cardContent(option) {
             {option.subheader}
           </Typography>
           <ul>
-            {option.features.map((feature) => (
+            {option.features.map((feature, i) => (
               <Typography component="li"
-                key={feature}
+                key={i + feature}
                 color='white'
                 sx={{ lineHeight: 2, fontWeight: 'bold' }}
                 >
