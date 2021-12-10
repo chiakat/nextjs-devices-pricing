@@ -70,7 +70,12 @@ const options = [
 
 function cardHeader(option, view) {
   return (
-    <Grid item sx={{ height: 140, m: 3 }} >
+    <Grid item sx={{
+      height: 190,
+      p: 3,
+      borderBottom: 1,
+      borderColor: '#cfd4da',
+    }} >
       <Typography color="primary.dark" align="center" sx={{
         p: 1, mb: 2, fontSize: 18, letterSpacing: 2,
       }}>
@@ -98,8 +103,6 @@ function cardContent(option) {
   if (option.name === 'Enterprise') {
     return (
       <Grid item sx={{
-        borderTop: 1,
-        borderColor: '#cfd4da',
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         backgroundColor: 'primary.dark',
@@ -132,8 +135,6 @@ function cardContent(option) {
     <Grid container>
       <Grid item sx={{
         height: 200,
-        borderTop: 1,
-        borderColor: '#cfd4da',
         py: 3,
         px: 1,
       }}>
