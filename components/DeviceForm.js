@@ -82,6 +82,7 @@ export default function DeviceForm({ device }) {
                 fullWidth
                 id="name"
                 label="Device Name"
+                type="text"
                 value={name}
                 autoFocus
                 onChange={(e) => setName(e.target.value)}
@@ -94,6 +95,7 @@ export default function DeviceForm({ device }) {
                 id="location"
                 label="Device Location"
                 name="location"
+                type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
@@ -105,6 +107,7 @@ export default function DeviceForm({ device }) {
                 id="project"
                 label="Project ID"
                 name="project"
+                type="number"
                 value={project}
                 onChange={(e) => setProject(e.target.value)}
               />
@@ -117,6 +120,7 @@ export default function DeviceForm({ device }) {
                 label="User ID"
                 type="user"
                 id="user"
+                type="number"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
               />

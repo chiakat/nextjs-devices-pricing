@@ -7,7 +7,6 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <div> You are Home </div>
     </Layout>
   );
 }

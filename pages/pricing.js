@@ -12,9 +12,9 @@ import Typography from '../theme/typography';
 export default function Pricing() {
   const [view, setView] = useState('monthly');
 
-  const handleChange = (event, view) => {
-    if (view !== null) {
-      setView(view);
+  const handleChange = (event, newView) => {
+    if (newView !== null) {
+      setView(newView);
     }
   };
 
@@ -29,7 +29,7 @@ export default function Pricing() {
         >
         <Grid container justifyContent="center" item sx={{ my: 2 }} xs={12} sm={6} md={3}>
           <Grid item align="center">
-            <Typography variant="h4" sx={{ p: 5 }}>
+            <Typography variant="h4" sx={{ p: 3 }}>
               Your first five devices are always free.
             </Typography>
             <Button variant="outlined" sx={{

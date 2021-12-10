@@ -40,7 +40,7 @@ const rightNav = [
     path: '/',
   },
   {
-    label: 'Log In',
+    label: 'Log in',
     path: '/',
   },
 ];
@@ -55,10 +55,10 @@ export default function Nav() {
             width={120}
             height={40}
             sx={{
-              minHeight: 50, flexGrow: 3, px: 3, py: 1, mr: 8,
+              minHeight: 50, flexGrow: 2, px: 3, py: 1,
             }}
           />
-          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 5 }} />
           {mainNav.map((item, i) => (
           <Typography key={i} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href={item.path}>
@@ -66,7 +66,7 @@ export default function Nav() {
             </Link>
           </Typography>
           ))}
-          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 3 }} />
           {rightNav.map((item, i) => (
           <Typography key={i} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href={item.path}>

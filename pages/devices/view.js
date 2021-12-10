@@ -8,7 +8,7 @@ export default function ViewAll({ devices }) {
       <Grid container alignItems="center" sx={{ mx: 2, mb: 10 }}>
       <h2>Your Devices</h2>
       <Grid container item justifyContent="flex-end">
-        <Button variant="contained" href="/devices/add">
+        <Button variant="contained" href="/devices/add" sx={{ mb: 3 }}>
           Add Device
         </Button>
       </Grid>

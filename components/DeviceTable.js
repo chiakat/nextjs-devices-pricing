@@ -26,12 +26,12 @@ export default function DeviceTable({ devices }) {
     }
   };
 
-
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Device name', width: 130 },
     { field: 'location', headerName: 'Location', width: 130 },
     { field: 'project', headerName: 'Project', width: 80 },
+    // Note: user will be removed in the final output after authentication is added
     { field: 'user', headerName: 'User', width: 80 },
     {
       field: 'Edit',
