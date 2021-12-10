@@ -5,7 +5,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import {
   Box, Grid, Link, Container, Typography,
 } from '@mui/material';
-// import Typography from '../theme/typography';
 
 const iconStyle = {
   width: 30,

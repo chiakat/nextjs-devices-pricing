@@ -2,12 +2,11 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Image from 'next/image';
 import {
-  Grid, ToggleButton, ToggleButtonGroup,
+  Grid, ToggleButton, ToggleButtonGroup, Typography,
 } from '@mui/material';
 import Layout from '../components/Layout';
 import OptionCards from '../components/pricing/OptionCards';
 import HelpCard from '../components/pricing/HelpCard';
-import Typography from '../theme/typography';
 
 export default function Pricing() {
   const [view, setView] = useState('monthly');

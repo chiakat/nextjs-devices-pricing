@@ -6,47 +6,17 @@
  */
 
 import React from 'react';
-import {
-  expect, render, screen,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Home from '../pages/index';
-import ViewAll from '../pages/devices/view';
-import MyApp from '../pages/_app';
-import Pricing from '../pages/pricing';
-
-
-
 
 describe('Home', () => {
-  it('renders a heading', () => {
-    render(
-      // <MyApp>
-        <Home />,
-      // </MyApp>,
-    );
-
-    const heading = screen.getByRole('heading', {
-      name: 'Welcome Home',
-    });
-
-    expect(heading).toBeInTheDocument();
-  });
-
-  it('renders a navigation bar', () => {
+  it('renders a logo', () => {
     render(<Home />);
 
-    const navLink = screen.getByText('Log in');
+    const logo = screen.getAllByRole('img', {
+      name: 'alwaysAI Logo',
+    });
 
-    expect(navLink).toBeInTheDocument();
-  });
-});
-
-describe('Devices', () => {
-  it('renders Devices on load', () => {
-    render(<ViewAll />);
-
-    const columnHeader = screen.getByText('Device ID');
-
-    expect(columnHeader).toBeInTheDocument();
+    expect(logo[0]).toBeInTheDocument();
   });
 });
