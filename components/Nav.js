@@ -1,6 +1,7 @@
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import {
-  AppBar, Box, Toolbar, Typography,
+  AppBar, Box, Toolbar, Typography, Button,
 } from '@mui/material';
 
 const mainNav = [
@@ -39,13 +40,30 @@ const rightNav = [
     label: 'Docs',
     path: '/',
   },
-  {
-    label: 'Log in',
-    path: '/',
-  },
 ];
 
 export default function Nav() {
+  const { data: session, data: loading } = useSession();
+
+  const renderLogin = () => {
+    if (!session) {
+      return (
+        <Button onClick={() => signIn('cognito', {
+          callbackUrl: `${window.location.origin}/protected`,
+        })}>
+          Log in
+        </Button>
+      );
+    }
+    return (
+      <Button onClick={() => signOut({
+        callbackUrl: `${window.location.origin}`,
+      })}>
+        Log out
+      </Button>
+    );
+  };
+
   return (
       <AppBar position="static" elevation={0} sx={{ background: 'none', color: 'grey', px: 5 }}>
         <Toolbar>
@@ -74,6 +92,7 @@ export default function Nav() {
             </Link>
           </Typography>
           ))}
+          {renderLogin()}
         </Toolbar>
       </AppBar>
   );
