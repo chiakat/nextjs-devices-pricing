@@ -2,10 +2,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Index from '../pages/index';
-import { SessionProvider } from 'next-auth/react';
-
+import { useSession } from 'next-auth/react';
 
 it('renders homepage unchanged', () => {
-  const tree = renderer.create(<SessionProvider><Index /></SessionProvider>).toJSON();
+  useSession.mockReturnValueOnce([
+    {
+      user: {
+        email: 'foo@bar.com',
+      },
+    },
+    false,
+  ]);
+  const tree = renderer.create(<Index />).toJSON();
   expect(tree).toMatchSnapshot();
 });
