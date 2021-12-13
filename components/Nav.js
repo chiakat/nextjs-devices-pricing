@@ -43,22 +43,30 @@ const rightNav = [
 ];
 
 export default function Nav() {
-  const { data: session, data: loading } = useSession();
+  const { data: session } = useSession();
 
   const renderLogin = () => {
     if (!session) {
       return (
-        <Button onClick={() => signIn('cognito', {
-          callbackUrl: `${window.location.origin}/protected`,
-        })}>
+        <Button
+          href={'/api/auth/signin'}
+          onClick={(e) => {
+            e.preventDefault();
+            signIn();
+          }}
+        >
           Log in
         </Button>
       );
     }
     return (
-      <Button onClick={() => signOut({
-        callbackUrl: `${window.location.origin}`,
-      })}>
+      <Button
+        href={'/api/auth/signout'}
+          onClick={(e) => {
+            e.preventDefault();
+            signOut();
+          }}
+      >
         Log out
       </Button>
     );

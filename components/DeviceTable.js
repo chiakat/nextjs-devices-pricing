@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/router';
 
 export default function DeviceTable({ devices }) {
+  console.log(devices);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const router = useRouter();

@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 
 export default function DeviceForm({ device }) {
-  const [action, setAction] = useState(device ? 'Updated' : 'Added');
+  const action = device ? 'Updated' : 'Added';
   const [name, setName] = useState(device ? device.name : '');
   const [location, setLocation] = useState(device ? device.location : '');
   const [user, setUser] = useState(device ? device.user : '');
@@ -118,7 +118,6 @@ export default function DeviceForm({ device }) {
                 fullWidth
                 name="user"
                 label="User ID"
-                type="user"
                 id="user"
                 type="number"
                 value={user}

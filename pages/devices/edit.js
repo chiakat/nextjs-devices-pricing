@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import CircularProgress from '@mui/material/CircularProgress';
 import Layout from '../../components/Layout';
 import DeviceForm from '../../components/DeviceForm';
@@ -26,7 +27,10 @@ export default function EditDevice({ id }) {
 
   return (
     <Layout>
-      <h1>Edit Device</h1>
+      <Head>
+        <title>Edit Device</title>
+      </Head>
+      <h2>Edit Device</h2>
       {device ? <DeviceForm device={device} /> : <CircularProgress />}
     </Layout>
   );

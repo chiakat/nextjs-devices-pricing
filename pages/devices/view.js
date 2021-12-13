@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Grid, Button } from '@mui/material';
 import DeviceTable from '../../components/DeviceTable';
 import Layout from '../../components/Layout';
@@ -5,6 +6,9 @@ import Layout from '../../components/Layout';
 export default function ViewAll({ devices }) {
   return (
     <Layout>
+       <Head>
+        <title>Your Devices</title>
+      </Head>
       <Grid container alignItems="center" sx={{ mx: 2, mb: 10 }}>
       <h2>Your Devices</h2>
       <Grid container item justifyContent="flex-end">

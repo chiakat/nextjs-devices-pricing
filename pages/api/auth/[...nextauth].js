@@ -4,8 +4,10 @@ import CognitoProvider from 'next-auth/providers/cognito';
 export default NextAuth({
   providers: [
     CognitoProvider({
+      idToken: true,
       clientId: process.env.COGNITO_CLIENT_ID,
       clientSecret: process.env.COGNITO_CLIENT_SECRET,
+      issuer: process.env.COGNITO_ISSUER,
       domain: process.env.COGNITO_DOMAIN,
     }),
   ],

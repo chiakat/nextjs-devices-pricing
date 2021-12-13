@@ -60,7 +60,7 @@ export default function Pricing() {
           <Typography variant="body2" color="text.secondary">A device is defined as lorem ipsum dolor sit amet consectatuer adipsicing elit.</Typography>
         </Grid>
         <Grid item sx={{ my: 2 }}>
-          <h2>Can't find a plan that works for you?</h2>
+          <h2>Can&apos;t find a plan that works for you?</h2>
           <Grid
             container
             direction="column"
