@@ -10,7 +10,7 @@ exports[`renders homepage unchanged 1`] = `
     >
       <img
         alt="alwaysAI Logo"
-        className="MuiBox-root css-1xq8d7y"
+        className="MuiBox-root css-vcjgua"
         src="/images/aai-logo-black.svg"
       />
       <div
@@ -111,7 +111,7 @@ exports[`renders homepage unchanged 1`] = `
         className="MuiTypography-root MuiTypography-h6 css-1juivf6-MuiTypography-root"
       >
         <a
-          href="/"
+          href="/api/auth/signin"
           onClick={[Function]}
           onMouseEnter={[Function]}
         >

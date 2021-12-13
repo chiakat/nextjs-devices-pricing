@@ -6,12 +6,13 @@
  */
 
 import React from 'react';
+import { SessionProvider } from 'next-auth/react';
 import { render, screen } from '@testing-library/react';
 import Home from '../pages/index';
 
 describe('Home', () => {
   it('renders a logo', () => {
-    render(<Home />);
+    render(<SessionProvider><Home /></SessionProvider>);
 
     const logo = screen.getAllByRole('img', {
       name: 'alwaysAI Logo',
