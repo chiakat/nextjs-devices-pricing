@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import {
-  AppBar, Box, Toolbar, Typography, Button,
+  AppBar, Box, Toolbar, Typography,
 } from '@mui/material';
 
 const mainNav = [
@@ -48,7 +48,7 @@ export default function Nav() {
   const renderLogin = () => {
     if (!session) {
       return (
-        <Button
+        <Link
           href={'/api/auth/signin'}
           onClick={(e) => {
             e.preventDefault();
@@ -56,11 +56,11 @@ export default function Nav() {
           }}
         >
           Log in
-        </Button>
+        </Link>
       );
     }
     return (
-      <Button
+      <Link
         href={'/api/auth/signout'}
           onClick={(e) => {
             e.preventDefault();
@@ -68,7 +68,7 @@ export default function Nav() {
           }}
       >
         Log out
-      </Button>
+      </Link>
     );
   };
 
@@ -78,10 +78,9 @@ export default function Nav() {
           <Box component="img"
             src="/images/aai-logo-black.svg"
             alt="alwaysAI Logo"
-            width={120}
-            height={40}
+            width={170}
             sx={{
-              minHeight: 50, flexGrow: 2, px: 3, py: 1,
+              px: 3, py: 1,
             }}
           />
           <Box sx={{ flexGrow: 5 }} />
@@ -100,7 +99,9 @@ export default function Nav() {
             </Link>
           </Typography>
           ))}
-          {renderLogin()}
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {renderLogin()}
+          </Typography>
         </Toolbar>
       </AppBar>
   );

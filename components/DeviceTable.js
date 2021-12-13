@@ -6,7 +6,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/router';
 
 export default function DeviceTable({ devices }) {
-  console.log(devices);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const router = useRouter();
@@ -38,7 +37,6 @@ export default function DeviceTable({ devices }) {
     {
       field: 'project', headerName: 'Project', flex: 1, minWidth: 50,
     },
-    // Note: user will be removed in the final output after authentication is added
     {
       field: 'user', headerName: 'User', flex: 1, minWidth: 50,
     },

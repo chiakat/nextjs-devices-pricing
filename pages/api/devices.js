@@ -1,9 +1,6 @@
-import { getSession } from 'next-auth/react';
-
 const knex = require('../../db/knex');
 
-function getAllDevices(email, req, res) {
-  console.log(email)
+function getAllDevices(req, res) {
   knex
     .select({
       id: 'd.id',
@@ -13,8 +10,9 @@ function getAllDevices(email, req, res) {
       project: 'd.project',
     })
     .from('devices AS d')
-    .leftJoin('users AS u', 'u.id', 'd.user')
-    .where('u.email', '=', email)
+    // Uncomment to add filter by user email
+    // .leftJoin('users AS u', 'u.id', 'd.user')
+    // .where('u.email', '=', email)
     .then((devices) => {
       res.status(200).json(devices);
       res.end();
@@ -99,39 +97,29 @@ function deleteDevice(id, req, res) {
     .catch((err) => res.status(500).send(err));
 }
 
-export default async (req, res) => {
-  // const session = await getSession({ req });
-
-  // if (session) {
-    const id = Number(req.query.id);
-    // const email = session.user.email;
-    const email = 'chiakyu@gmail.com';
-    switch (req.method) {
-      case 'GET': {
-        if (!id) {
-          return getAllDevices(email, req, res);
-        }
-        return getDeviceInfo(id, req, res);
+export default async function (req, res) {
+  const id = Number(req.query.id);
+  switch (req.method) {
+    case 'GET': {
+      if (!id) {
+        return getAllDevices(req, res);
       }
-
-      case 'POST': {
-        return addDevice(req, res);
-      }
-
-      case 'PUT': {
-        return updateDevice(id, req, res);
-      }
-
-      case 'DELETE': {
-        return deleteDevice(id, req, res);
-      }
-
-      default:
-        console.log('no available actions');
+      return getDeviceInfo(id, req, res);
     }
-  // } else {
-  //   res.send({
-  //     error: 'Sign in to view devices.',
-  //   });
-  // }
+
+    case 'POST': {
+      return addDevice(req, res);
+    }
+
+    case 'PUT': {
+      return updateDevice(id, req, res);
+    }
+
+    case 'DELETE': {
+      return deleteDevice(id, req, res);
+    }
+
+    default:
+      console.log('no available actions');
+  }
 };

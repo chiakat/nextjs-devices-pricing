@@ -11,9 +11,6 @@
     "seed": "knex seed:run",
     "test": "jest --watch"
   },
-  "jest": {
-    "testEnvironment": "jsdom"
-  },
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",

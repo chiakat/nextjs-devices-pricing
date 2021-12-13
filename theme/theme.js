@@ -15,7 +15,7 @@ const rawTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'DM Sans','Work Sans', sans-serif",
+    fontFamily: "'Karla', 'DM Sans','Work Sans', sans-serif",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -40,23 +40,13 @@ const rawTheme = createTheme({
         },
       },
     },
-    // MuiToggleButtonGroup: {
-    //   styleOverrides: {
-    //     backgroundColor: 'primary.dark',
-    //     borderColor: 'primary',
-    //     color: '#primary',
-    //     '&.Mui-disabled': {
-    //       border: 0,
-    //     },
-    //   },
-    // },
   },
 });
 
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightMedium,
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "'Karla', 'DM Sans', sans-serif",
 };
 
 const theme = {
